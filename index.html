@@ -1,16 +1,38 @@
 <!doctype html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Audio</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Audio</title>
 </head>
-<body>
-<audio id="audio" src="audio_1_minute.mp3" autoplay loop></audio>
+<body style="display:grid;place-items:center;min-height:100vh;background:#111">
+
+<button id="start" style="font-size:24px;padding:18px 35px">
+  ▶ START
+</button>
+
+<audio id="audio" preload="auto" src="audio_1_minute.mp3"></audio>
+
 <script>
-const a = document.getElementById('audio');
-a.play().catch(() => {
-  document.body.innerHTML = '<button style="font-size:24px;padding:20px" onclick="audio.play()">▶ START</button>';
-});
+const audio = document.getElementById("audio");
+const start = document.getElementById("start");
+
+start.onclick = async () => {
+  try {
+    audio.loop = true;
+    await audio.play();
+
+    start.style.display = "none";
+
+    setTimeout(() => {
+      audio.pause();
+      audio.currentTime = 0;
+    }, 120000);
+
+  } catch (e) {
+    alert("Audio start nahi ho rahi. Audio file ka naam/path check karein.");
+  }
+};
 </script>
+
 </body>
 </html>
