@@ -1,37 +1,268 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Audio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aviator Demo</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#090d18;
+  color:white;
+  font-family:Arial,sans-serif;
+  text-align:center;
+}
+.game{
+  max-width:500px;
+  margin:auto;
+  padding:15px;
+}
+h1{margin:10px 0;color:#ff3158}
+.balance{
+  background:#151c2d;
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:12px;
+}
+#balance{font-weight:bold;color:#36e69a}
+.board{
+  position:relative;
+  height:330px;
+  overflow:hidden;
+  border-radius:15px;
+  background:linear-gradient(#111a31,#090d18);
+  border:1px solid #26314b;
+}
+#multiplier{
+  position:absolute;
+  top:35%;
+  width:100%;
+  font-size:55px;
+  font-weight:bold;
+  color:#fff;
+}
+#plane{
+  position:absolute;
+  font-size:42px;
+  left:15%;
+  bottom:18%;
+  transition:.05s linear;
+}
+#status{
+  margin:12px;
+  min-height:22px;
+  color:#b9c2d9;
+}
+.controls{
+  background:#151c2d;
+  padding:15px;
+  border-radius:12px;
+}
+input{
+  width:100%;
+  padding:13px;
+  border:0;
+  border-radius:8px;
+  margin-bottom:10px;
+  font-size:18px;
+}
+button{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:9px;
+  font-size:18px;
+  font-weight:bold;
+  margin-top:8px;
+  cursor:pointer;
+}
+#bet{background:#ff3158;color:white}
+#cashout{background:#25d98a;color:#06130d}
+button:disabled{opacity:.4}
+</style>
 </head>
-<body style="display:grid;place-items:center;min-height:100vh;background:#111">
 
-<button id="start" style="font-size:24px;padding:18px 35px">
-  ▶ START
-</button>
+<body>
 
-<audio id="audio" preload="auto" src="audio_1_minute.mp3"></audio>
+<div class="game">
+
+<h1>✈️ AVIATOR DEMO</h1>
+
+<div class="balance">
+  Virtual Balance:
+  <span id="balance">1000.00</span> coins
+</div>
+
+<div class="board">
+  <div id="multiplier">1.00x</div>
+  <div id="plane">✈️</div>
+</div>
+
+<div id="status">Place your virtual bet</div>
+
+<div class="controls">
+
+<input id="betAmount"
+       type="number"
+       min="1"
+       value="10"
+       placeholder="Virtual bet">
+
+<button id="bet">BET</button>
+<button id="cashout" disabled>CASH OUT</button>
+
+</div>
+
+</div>
 
 <script>
-const audio = document.getElementById("audio");
-const start = document.getElementById("start");
 
-start.onclick = async () => {
-  try {
-    audio.loop = true;
-    await audio.play();
+let balance = 1000;
+let bet = 0;
+let multiplier = 1;
+let crashPoint = 0;
+let running = false;
+let cashedOut = false;
+let timer = null;
 
-    start.style.display = "none";
+const balanceEl = document.getElementById("balance");
+const multiplierEl = document.getElementById("multiplier");
+const planeEl = document.getElementById("plane");
+const statusEl = document.getElementById("status");
+const betBtn = document.getElementById("bet");
+const cashoutBtn = document.getElementById("cashout");
+const betInput = document.getElementById("betAmount");
 
-    setTimeout(() => {
-      audio.pause();
-      audio.currentTime = 0;
-    }, 120000);
+function updateBalance(){
+  balanceEl.textContent = balance.toFixed(2);
+}
 
-  } catch (e) {
-    alert("Audio start nahi ho rahi. Audio file ka naam/path check karein.");
+function newCrashPoint(){
+
+  // Demo-only random crash point.
+  // Not connected to real money or betting.
+
+  return +(1.05 + Math.random() * 8).toFixed(2);
+}
+
+function startRound(){
+
+  running = true;
+  cashedOut = false;
+
+  multiplier = 1;
+  crashPoint = newCrashPoint();
+
+  multiplierEl.textContent = "1.00x";
+  planeEl.style.left = "15%";
+  planeEl.style.bottom = "18%";
+
+  statusEl.textContent = "Flying...";
+
+  betBtn.disabled = true;
+  cashoutBtn.disabled = false;
+
+  timer = setInterval(()=>{
+
+    multiplier += 0.015 + multiplier * 0.006;
+
+    multiplierEl.textContent =
+      multiplier.toFixed(2) + "x";
+
+    let x = Math.min(
+      80,
+      15 + (multiplier - 1) * 8
+    );
+
+    let y = Math.min(
+      75,
+      18 + (multiplier - 1) * 5
+    );
+
+    planeEl.style.left = x + "%";
+    planeEl.style.bottom = y + "%";
+
+    if(multiplier >= crashPoint){
+      crash();
+    }
+
+  },50);
+}
+
+function crash(){
+
+  clearInterval(timer);
+
+  running = false;
+  cashoutBtn.disabled = true;
+  betBtn.disabled = false;
+
+  multiplierEl.textContent =
+    crashPoint.toFixed(2) + "x";
+
+  statusEl.textContent =
+    "💥 CRASHED at " +
+    crashPoint.toFixed(2) + "x";
+
+  planeEl.style.transform = "rotate(-25deg)";
+
+  setTimeout(()=>{
+    planeEl.style.transform = "";
+  },500);
+}
+
+function cashOut(){
+
+  if(!running || cashedOut) return;
+
+  cashedOut = true;
+
+  let win = bet * multiplier;
+
+  balance += win;
+
+  updateBalance();
+
+  statusEl.textContent =
+    "💰 CASHED OUT at " +
+    multiplier.toFixed(2) +
+    "x — +" +
+    win.toFixed(2) +
+    " coins";
+
+  cashoutBtn.disabled = true;
+}
+
+betBtn.onclick = ()=>{
+
+  if(running) return;
+
+  let amount = Number(betInput.value);
+
+  if(!amount || amount <= 0){
+    statusEl.textContent = "Enter a valid virtual bet.";
+    return;
   }
+
+  if(amount > balance){
+    statusEl.textContent = "Not enough virtual coins.";
+    return;
+  }
+
+  bet = amount;
+  balance -= bet;
+
+  updateBalance();
+
+  startRound();
 };
+
+cashoutBtn.onclick = cashOut;
+
+updateBalance();
+
 </script>
 
 </body>
