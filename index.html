@@ -6,153 +6,354 @@
 <title>WIFI PACKAGE</title>
 
 <style>
-*{box-sizing:border-box}
+/* Reset and global styles */
+* { box-sizing: border-box; }
 
-body{
-  margin:0;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
   justify-content:center;
-  padding:20px;
-  font-family:Arial,sans-serif;
-  color:white;
-  background:linear-gradient(135deg,#07111f,#123653);
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: white;
+  background-color: #0d1b2c; /* Background color of the original code */
 }
 
-.card{
-  width:100%;
-  max-width:390px;
-  padding:28px;
-  text-align:center;
-  border-radius:24px;
-  background:rgba(13,27,44,.97);
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:0 20px 60px rgba(0,0,0,.45);
+/* Card base styles (all cards in the HTML) */
+.card {
+  width: 100%;
+  max-width: 390px;
+  padding: 28px;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
 }
 
-.icon{
-  font-size:55px;
-  margin-bottom:8px;
+/* Styles specific to original dark cards (Dashboard) */
+.card-dark {
+  background: rgba(13, 27, 44, .97);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
 }
 
-h1{
-  margin:0 0 7px;
-  font-size:28px;
+/* Base element styles within dark cards */
+.icon { font-size: 55px; margin-bottom: 8px; }
+h1.dark { margin: 0 0 7px; font-size: 28px; }
+.sub.dark { color: #9eacbf; margin: 0 0 22px; }
+
+input.dark {
+  width: 100%;
+  padding: 15px;
+  margin: 7px 0;
+  border: 1px solid #33445b;
+  border-radius: 12px;
+  background: #091625;
+  color: white;
+  font-size: 16px;
+  outline: none;
+}
+input.dark:focus { border-color: #32d7ff; }
+
+button.dark {
+  width: 100%;
+  padding: 15px;
+  margin-top: 12px;
+  border: 0;
+  border-radius: 12px;
+  background: #20c9ed;
+  color: #03121a;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+button.dark:active { transform: scale(.98); }
+
+#error-dark {
+  min-height: 22px;
+  margin-top: 12px;
+  color: #ff687b;
+  text-align: center;
 }
 
-.sub{
-  color:#9eacbf;
-  margin:0 0 22px;
+/* Dashboard-specific info displays */
+.info { text-align: left; background: #091625; border-radius: 15px; padding: 17px; margin-top: 12px; }
+.label { font-size: 12px; color: #8fa0b5; text-transform: uppercase; }
+.value { margin-top: 6px; font-size: 20px; font-weight: bold; word-break: break-all; }
+.pass { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.copy { width: auto; margin: 0; padding: 9px 12px; font-size: 13px; background: #263b54; color: white; border: 0; cursor: pointer; border-radius: 12px; }
+.logout.dark { background: #202e41; color: white; margin-top: 18px; }
+
+
+/* Styles specific to NEW white cards (Login and Sign Up) */
+.card-light {
+  background: white;
+  color: #0d1b2c; /* Dark text */
+  text-align: center;
 }
 
-input{
-  width:100%;
-  padding:15px;
-  margin:7px 0;
-  border:1px solid #33445b;
-  border-radius:12px;
-  background:#091625;
-  color:white;
-  font-size:16px;
-  outline:none;
+/* New heading and text styles for light cards */
+.light-title {
+  margin: 0 0 10px;
+  font-size: 28px;
+  font-weight: bold;
+}
+.light-sub {
+  color: #8fa0b5;
+  margin: 0 0 25px;
+  font-size: 14px;
 }
 
-input:focus{
-  border-color:#32d7ff;
+/* Sign Up card visual elements */
+.sign-up-header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 40px; /* Room for shapes */
+  margin-bottom: 20px;
+}
+.circle-top-left {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid #0d1b2c;
+  background: transparent;
+}
+.circle-right-upper {
+  position: absolute;
+  top: 50px;
+  right: 15px;
+  width: 25px; height: 25px;
+  border-radius: 50%;
+  border: 1.5px solid #0d1b2c;
+  background: transparent;
+}
+.circle-right-lower {
+  position: absolute;
+  top: 90px;
+  right: 10px;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid #0d1b2c;
+  background: transparent;
+}
+/* This is a simple placeholder SVG path for the foliage */
+.foliage {
+  margin: 0 auto;
 }
 
-button{
-  width:100%;
-  padding:15px;
-  margin-top:12px;
-  border:0;
-  border-radius:12px;
-  background:#20c9ed;
-  color:#03121a;
-  font-size:17px;
-  font-weight:bold;
-  cursor:pointer;
+/* Input fields for light cards */
+.light-input {
+  width: 100%;
+  padding: 15px 5px; /* Minimal padding for a line-only style */
+  margin: 10px 0;
+  border: none;
+  border-bottom: 1.5px solid #d3dbe3; /* Light grey underline */
+  background: transparent;
+  color: #0d1b2c;
+  font-size: 15px;
+  outline: none;
+}
+.light-input:focus {
+  border-color: #0d1b2c; /* Highlight underline on focus */
+}
+/* Placeholder text color */
+.light-input::placeholder {
+  color: #8fa0b5;
+  opacity: 0.8;
 }
 
-button:active{
-  transform:scale(.98);
+/* New button styles for light cards */
+.btn-outline {
+  width: 100%;
+  padding: 16px;
+  margin-top: 15px;
+  border: 1.5px solid #0d1b2c;
+  border-radius: 30px; /* Fully rounded */
+  background: transparent;
+  color: #0d1b2c;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.btn-outline:active { transform: scale(.98); }
+
+.btn-filled {
+  width: 100%;
+  padding: 16px;
+  margin-top: 15px;
+  border: 1.5px solid #0d1b2c;
+  border-radius: 30px; /* Fully rounded */
+  background: rgba(22, 102, 158, 0.15); /* Light blue background like the image */
+  color: #0d1b2c;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn-filled:active { transform: scale(.98); }
+
+.btn-filled-large {
+  width: 100%;
+  padding: 20px;
+  margin-top: 30px;
+  border: 1.5px solid #0d1b2c;
+  border-radius: 30px;
+  background: #e1e9f1; /* Light grey filled */
+  color: #0d1b2c;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn-filled-large:active { transform: scale(.98); }
+
+
+/* Sign Up specific link at the bottom */
+.signup-link-container {
+  margin-top: 30px;
+  font-size: 13px;
+  color: #8fa0b5;
+}
+.signup-link {
+  color: #0d1b2c;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-#error{
-  min-height:22px;
-  margin-top:12px;
-  color:#ff687b;
+/* Simple graphic placeholder for the Welcome card illustration */
+.welcome-illustration {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  margin-bottom: 25px;
+  background-color: transparent;
+}
+/* This is a simple visual replacement for the image content */
+.placeholder-graphic {
+  position: relative;
+  width: 80%;
+  height: 200px;
+  background: white;
+}
+.placeholder-sofa {
+  position: absolute;
+  bottom: 0; left: 10%; width: 80%; height: 60px;
+  background-color: #f0f4f8; /* Light blueish sofa base */
+  border-radius: 8px 8px 0 0;
+}
+.placeholder-user {
+  position: absolute;
+  bottom: 50px; left: 35%; width: 30%; height: 100px;
+  background-color: #8397aa; /* Simple user graphic color */
+  border-radius: 5px;
+}
+.placeholder-laptop {
+  position: absolute;
+  bottom: 90px; left: 45%; width: 10%; height: 20px;
+  background-color: #3d5872; /* Laptop */
+}
+.placeholder-light-circle {
+  position: absolute;
+  top: 10%; right: 10%; width: 40px; height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid #d3dbe3;
+}
+.placeholder-dark-circle {
+  position: absolute;
+  top: 60%; left: 10%; width: 25px; height: 25px;
+  border-radius: 50%;
+  background-color: #d7e7f5;
+}
+.placeholder-light-box {
+  position: absolute;
+  bottom: 60%; left: 10%; width: 30px; height: 30px;
+  background: transparent;
+  border: 1.5px solid #d3dbe3;
+}
+.placeholder-light-triangle {
+  position: absolute;
+  bottom: 60%; right: 10%; width: 30px; height: 30px;
+  background: transparent;
+  border: 1.5px solid #d3dbe3;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+.placeholder-plant {
+  position: absolute;
+  bottom: 20px; right: 15%; width: 20px; height: 40px;
+  background-color: transparent;
+  border-left: 2px solid #8397aa;
 }
 
-#dashboard{
-  display:none;
+#login, #signup { display: none; }
+#welcome { display: block; }
+
+/* Error messages on light cards */
+.light-error {
+  min-height: 22px;
+  margin-top: 10px;
+  color: #ff687b;
+  text-align: center;
+  font-size: 14px;
 }
 
-.info{
-  text-align:left;
-  background:#091625;
-  border-radius:15px;
-  padding:17px;
-  margin-top:12px;
-}
-
-.label{
-  font-size:12px;
-  color:#8fa0b5;
-  text-transform:uppercase;
-}
-
-.value{
-  margin-top:6px;
-  font-size:20px;
-  font-weight:bold;
-  word-break:break-all;
-}
-
-.pass{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-}
-
-.copy{
-  width:auto;
-  margin:0;
-  padding:9px 12px;
-  font-size:13px;
-  background:#263b54;
-  color:white;
-}
-
-.logout{
-  background:#202e41;
-  color:white;
-  margin-top:18px;
-}
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
+<!-- THEME-BASED BACKGROUND PATTERNS FROM IMAGE (e.g. BOOM!, SMILEY) -->
+<div style="position:fixed; top:5%; left:5%; font-size:80px; color:rgba(255,255,255,0.1); font-weight:bold; letter-spacing: -2px; pointer-events:none;">BOOM!</div>
+<div style="position:fixed; bottom:5%; right:5%; font-size:80px; color:rgba(255,255,255,0.1); font-weight:bold; pointer-events:none;">X)</div>
 
-<div class="card" id="login">
+
+<!-- 1. WELCOME CARD (REPLACED LOGIN CARD) -->
+
+<div class="card card-light" id="welcome">
+
+  <div class="light-title">Wellcome</div>
+  <div class="light-sub">Here you log in securely</div>
+
+  <div class="welcome-illustration">
+    <div class="placeholder-graphic">
+        <div class="placeholder-sofa"></div>
+        <div class="placeholder-user"></div>
+        <div class="placeholder-laptop"></div>
+        <div class="placeholder-dark-circle"></div>
+        <div class="placeholder-light-box"></div>
+        <div class="placeholder-light-triangle"></div>
+        <div class="placeholder-plant"></div>
+        <div class="placeholder-light-circle"></div>
+    </div>
+  </div>
+
+  <button class="btn-outline" onclick="showLogin()">Log in</button>
+  <button class="btn-filled" onclick="showSignUp()">Sign Up</button>
+
+</div>
+
+
+<!-- 2. LOGIN CARD (New, simplified login from original code but light style) -->
+
+<div class="card card-light" id="login">
 
   <div class="icon">📶</div>
 
-  <h1>WIFI PACKAGE</h1>
-
-  <p class="sub">
-    Login to view your WiFi details
-  </p>
+  <div class="light-title">WiFi Packages</div>
+  <div class="light-sub">Log in to manage your account</div>
 
   <input
     id="username"
     type="text"
     placeholder="Username"
     autocomplete="username"
+    class="light-input"
   >
 
   <input
@@ -160,147 +361,31 @@ button:active{
     type="password"
     placeholder="Login Password"
     autocomplete="current-password"
+    class="light-input"
   >
 
-  <button onclick="login()">
-    LOGIN
-  </button>
+  <div class="light-error" id="error-login"></div>
 
-  <div id="error"></div>
+  <button class="btn-filled-large" onclick="login()">Log In</button>
+
+  <div class="signup-link-container">
+    <span class="signup-link" onclick="showSignUp()">Create Account instead</span>
+  </div>
 
 </div>
 
 
-<!-- DASHBOARD -->
+<!-- 3. SIGN UP CARD (New card from image, with some basic inputs) -->
 
-<div class="card" id="dashboard">
+<div class="card card-light" id="signup">
 
-  <div class="icon">✅</div>
-
-  <h1>WIFI PACKAGE</h1>
-
-  <p class="sub">
-    Your WiFi details
-  </p>
-
-  <div class="info">
-
-    <div class="label">
-      WiFi Name (SSID)
-    </div>
-
-    <div class="value">
-      Anas Malik
-    </div>
-
-  </div>
-
-
-  <div class="info">
-
-    <div class="label">
-      WiFi Password
-    </div>
-
-    <div class="pass">
-
-      <div class="value" id="wifiPass">
-        malikx777
-      </div>
-
-      <button class="copy" onclick="copyPass()">
-        COPY
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <button class="logout" onclick="logout()">
-    LOGOUT
-  </button>
-
-</div>
-
-
-<script>
-
-const USERNAME = "anasx777";
-const LOGIN_PASSWORD = "aass1122";
-
-
-function login(){
-
-  const username =
-    document.getElementById("username").value.trim();
-
-  const password =
-    document.getElementById("password").value;
-
-  const error =
-    document.getElementById("error");
-
-
-  if(
-    username === USERNAME &&
-    password === LOGIN_PASSWORD
-  ){
-
-    document.getElementById("login").style.display =
-      "none";
-
-    document.getElementById("dashboard").style.display =
-      "block";
-
-    error.textContent = "";
-
-  }else{
-
-    error.textContent =
-      "❌ Incorrect username or password";
-
-  }
-
-}
-
-
-function copyPass(){
-
-  navigator.clipboard.writeText("malikx777")
-  .then(function(){
-
-    const button =
-      document.querySelector(".copy");
-
-    button.textContent = "COPIED ✓";
-
-    setTimeout(function(){
-
-      button.textContent = "COPY";
-
-    },1500);
-
-  });
-
-}
-
-
-function logout(){
-
-  document.getElementById("dashboard").style.display =
-    "none";
-
-  document.getElementById("login").style.display =
-    "block";
-
-  document.getElementById("username").value = "";
-
-  document.getElementById("password").value = "";
-
-}
-
-</script>
-
-</body>
-</html>
+    <div class="sign-up-header">
+        <div class="circle-top-left"></div>
+        <div class="circle-right-upper"></div>
+        <div class="circle-right-lower"></div>
+        <!-- Simplified Foliage SVG placeholder -->
+        <svg class="foliage" width="100" height="70" viewBox="0 0 100 70">
+            <path d="M 50 10 C 50 10, 60 30, 50 40 C 50 40, 40 60, 50 65" stroke="black" stroke-width="1.5" fill="none"/>
+            <path d="M 50 15 C 50 15, 65 10, 75 25 Q 70 30, 55 30" stroke="none" fill="black"/>
+            <path d="M 50 25 C 50 25, 65 30, 75 45 Q 65 50, 50 45" stroke="none" fill="black"/>
+            <path d="M 50 35 C 50 35, 65 50, 60 65 Q 50 60, 45 50" stroke="none" 
