@@ -15,14 +15,14 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #0d1b2c;
-  background: #aadbff; /* Light blue background like picture */
+  background: #aadbff;
   position: relative;
   overflow-x: hidden;
 }
 
-/* Background watermark text & shapes */
+/* Background Watermarks */
 .bg-text {
   position: fixed;
   top: 2%;
@@ -43,13 +43,13 @@ body {
   z-index: 0;
 }
 
-/* Card base */
+/* Card Base */
 .card {
   width: 100%;
-  max-width: 360px;
+  max-width: 380px;
   padding: 30px 25px;
   border-radius: 30px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
   position: relative;
   z-index: 1;
 }
@@ -73,7 +73,6 @@ body {
   font-size: 14px;
 }
 
-/* Inputs */
 .light-input {
   width: 100%;
   padding: 12px 5px;
@@ -88,11 +87,7 @@ body {
 .light-input:focus {
   border-color: #0d1b2c;
 }
-.light-input::placeholder {
-  color: #b0bec5;
-}
 
-/* Buttons */
 .btn-outline {
   width: 100%;
   padding: 14px;
@@ -136,7 +131,6 @@ button:active {
   transform: scale(0.98);
 }
 
-/* Links */
 .link-text {
   margin-top: 20px;
   font-size: 13px;
@@ -149,7 +143,6 @@ button:active {
   text-decoration: underline;
 }
 
-/* Illustration Placeholder */
 .illustration {
   width: 100%;
   height: 180px;
@@ -158,12 +151,7 @@ button:active {
   justify-content: center;
   align-items: center;
 }
-.illustration svg {
-  width: 100%;
-  height: 100%;
-}
 
-/* Header Art for Signup */
 .signup-art {
   width: 100%;
   height: 90px;
@@ -172,21 +160,207 @@ button:active {
   align-items: center;
 }
 
-/* Dark Card (Dashboard) */
+/* ==========================================
+   MODERN DASHBOARD STYLES
+   ========================================== */
 .card-dark {
-  background: rgba(13, 27, 44, 0.97);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(145deg, #0f1c2e, #1a2c42);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   color: white;
   text-align: center;
+  backdrop-filter: blur(10px);
 }
-.card-dark h1 { margin: 0 0 7px; font-size: 26px; }
-.card-dark .sub { color: #9eacbf; margin: 0 0 20px; }
-.info { text-align: left; background: #091625; border-radius: 15px; padding: 15px; margin-top: 12px; }
-.label { font-size: 11px; color: #8fa0b5; text-transform: uppercase; }
-.value { margin-top: 5px; font-size: 18px; font-weight: bold; word-break: break-all; }
-.pass { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.copy { width: auto; margin: 0; padding: 8px 12px; font-size: 12px; background: #263b54; color: white; border: 0; cursor: pointer; border-radius: 10px; }
-.logout { width: 100%; padding: 14px; border: 0; border-radius: 12px; background: #202e41; color: white; font-size: 15px; font-weight: bold; margin-top: 18px; cursor: pointer; }
+
+.dash-header {
+  margin-bottom: 20px;
+}
+
+.wifi-glow-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(32, 201, 237, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  font-size: 30px;
+  border: 1px solid rgba(32, 201, 237, 0.3);
+  box-shadow: 0 0 20px rgba(32, 201, 237, 0.2);
+}
+
+.dash-title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 0;
+  background: linear-gradient(90deg, #ffffff, #80d8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(46, 213, 115, 0.15);
+  color: #2ed573;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 6px;
+  border: 1px solid rgba(46, 213, 115, 0.3);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  background-color: #2ed573;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #2ed573;
+}
+
+/* Info Cards */
+.info-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 14px 16px;
+  margin-top: 12px;
+  text-align: left;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.info-card:hover {
+  border-color: rgba(32, 201, 237, 0.4);
+}
+
+.info-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-label {
+  font-size: 11px;
+  color: #8fa0b5;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.info-value-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+  gap: 10px;
+}
+
+.info-value {
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  word-break: break-all;
+}
+
+/* Progress Bar Styles */
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #20c9ed, #2ed573);
+  border-radius: 10px;
+  transition: width 0.6s ease;
+}
+
+.progress-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #8fa0b5;
+  margin-top: 6px;
+}
+
+/* QR Code Section */
+.qr-container {
+  display: none;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 15px;
+  border-radius: 16px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.qr-container img {
+  width: 140px;
+  height: 140px;
+  border-radius: 8px;
+}
+
+.qr-text {
+  color: #07111f;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.btn-icon {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.btn-copy-main {
+  background: #20c9ed;
+  color: #07111f;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-qr-toggle {
+  width: 100%;
+  padding: 11px;
+  margin-top: 12px;
+  border: 1px solid rgba(32, 201, 237, 0.4);
+  border-radius: 14px;
+  background: rgba(32, 201, 237, 0.1);
+  color: #20c9ed;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.logout-modern {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid rgba(255, 75, 75, 0.3);
+  border-radius: 14px;
+  background: rgba(255, 75, 75, 0.1);
+  color: #ff6b6b;
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 16px;
+  cursor: pointer;
+}
 
 #error {
   min-height: 20px;
@@ -264,35 +438,99 @@ button:active {
 </div>
 
 
-<!-- 4. DASHBOARD SCREEN -->
+<!-- 4. MODERN DASHBOARD SCREEN WITH PROGRESS & QR -->
 <div class="card card-dark" id="screen-dashboard" style="display: none;">
-  <div style="font-size: 45px; margin-bottom: 10px;">📶</div>
-  <h1>WIFI PACKAGE</h1>
-  <p class="sub">Your WiFi details</p>
-
-  <div class="info">
-    <div class="label">WiFi Name (SSID)</div>
-    <div class="value">Anas Malik</div>
-  </div>
-
-  <div class="info">
-    <div class="label">WiFi Password</div>
-    <div class="pass">
-      <div class="value" id="wifiPass">malikx777</div>
-      <button class="copy" onclick="copyPass()">COPY</button>
+  
+  <div class="dash-header">
+    <div class="wifi-glow-icon">📶</div>
+    <h2 class="dash-title">WIFI DETAILS</h2>
+    <div class="status-badge">
+      <span class="status-dot"></span> Active Connection
     </div>
   </div>
 
-  <button class="logout" onclick="logout()">LOGOUT</button>
+  <!-- SSID Card -->
+  <div class="info-card">
+    <div class="info-label">Network Name (SSID)</div>
+    <div class="info-value-box">
+      <span class="info-value" id="displayWifiName">---</span>
+      <span style="font-size: 11px; color: #8fa0b5;">5G Dual-Band</span>
+    </div>
+  </div>
+
+  <!-- Password Card -->
+  <div class="info-card">
+    <div class="info-top">
+      <span class="info-label">WiFi Password</span>
+      <button class="btn-icon" id="togglePassBtn" onclick="togglePassword()">👁️ Show</button>
+    </div>
+    <div class="info-value-box">
+      <span class="info-value" id="wifiPass">••••••••</span>
+      <button class="btn-copy-main" id="copyBtn" onclick="copyPass()">COPY</button>
+    </div>
+  </div>
+
+  <!-- Data Usage Progress Card -->
+  <div class="info-card">
+    <div class="info-top">
+      <span class="info-label">Data Package Usage</span>
+      <span id="dataStatusText" style="font-size: 11px; color: #20c9ed; font-weight: bold;">0% Used</span>
+    </div>
+    <div class="progress-container">
+      <div class="progress-bar" id="dataProgressBar"></div>
+    </div>
+    <div class="progress-text">
+      <span id="usedText">0 GB</span>
+      <span id="totalText">100 GB</span>
+    </div>
+  </div>
+
+  <!-- Quick Connect QR Button & Area -->
+  <button class="btn-qr-toggle" onclick="toggleQRCode()">📱 Show Connect QR Code</button>
+  
+  <div class="qr-container" id="qrContainer">
+    <img id="qrImage" src="" alt="WiFi QR Code">
+    <div class="qr-text">Scan with Phone Camera to Connect</div>
+  </div>
+
+  <button class="logout-modern" onclick="logout()">LOG OUT</button>
+
 </div>
 
 
 <script>
-// Credentials
-const USERNAME = "anasx777";
-const LOGIN_PASSWORD = "aass1122";
+// USERS LIST WITH DATA LIMITS
+const USERS = [
+  {
+    username: "anasx777",
+    password: "aass1122",
+    wifiName: "Anas Malik",
+    wifiPass: "malikx777",
+    dataUsed: 68,  // GB
+    dataTotal: 100 // GB
+  },
+  {
+    username: "ali123",
+    password: "pass1234",
+    wifiName: "Ali WiFi",
+    wifiPass: "aliwifi999",
+    dataUsed: 25,
+    dataTotal: 50
+  },
+  {
+    username: "dost1",
+    password: "78678600",
+    wifiName: "Friend WiFi",
+    wifiPass: "dostpass123",
+    dataUsed: 92,
+    dataTotal: 100
+  }
+];
 
-// Screen Switcher
+let activeUser = null;
+let isPassVisible = false;
+let isQrVisible = false;
+
 function showScreen(screenId) {
   document.getElementById("screen-welcome").style.display = "none";
   document.getElementById("screen-login").style.display = "none";
@@ -302,37 +540,94 @@ function showScreen(screenId) {
   document.getElementById(screenId).style.display = "block";
 }
 
-// Login logic
 function login() {
-  const user = document.getElementById("username").value.trim();
-  const pass = document.getElementById("password").value;
+  const userInput = document.getElementById("username").value.trim();
+  const passInput = document.getElementById("password").value;
   const error = document.getElementById("error");
 
-  if (user === USERNAME && pass === LOGIN_PASSWORD) {
+  const foundUser = USERS.find(u => u.username === userInput && u.password === passInput);
+
+  if (foundUser) {
     error.textContent = "";
+    activeUser = foundUser;
+    
+    // Set WiFi SSID & Password Reset
+    document.getElementById("displayWifiName").textContent = activeUser.wifiName;
+    isPassVisible = false;
+    document.getElementById("wifiPass").textContent = "••••••••";
+    document.getElementById("togglePassBtn").textContent = "👁️ Show";
+
+    // Set Data Usage Progress
+    const percent = Math.round((activeUser.dataUsed / activeUser.dataTotal) * 100);
+    document.getElementById("dataProgressBar").style.width = percent + "%";
+    document.getElementById("dataStatusText").textContent = percent + "% Used";
+    document.getElementById("usedText").textContent = activeUser.dataUsed + " GB used";
+    document.getElementById("totalText").textContent = activeUser.dataTotal + " GB total";
+
+    // Prepare QR Code URL
+    const wifiQrString = `WIFI:T:WPA;S:${activeUser.wifiName};P:${activeUser.wifiPass};;`;
+    const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(wifiQrString)}`;
+    document.getElementById("qrImage").src = qrApiUrl;
+
+    // Reset QR Visibility
+    document.getElementById("qrContainer").style.display = "none";
+    isQrVisible = false;
+
     showScreen("screen-dashboard");
   } else {
     error.textContent = "❌ Incorrect username or password";
   }
 }
 
-// Copy password
+function togglePassword() {
+  const passElement = document.getElementById("wifiPass");
+  const toggleBtn = document.getElementById("togglePassBtn");
+
+  if (isPassVisible) {
+    passElement.textContent = "••••••••";
+    toggleBtn.textContent = "👁️ Show";
+    isPassVisible = false;
+  } else {
+    passElement.textContent = activeUser.wifiPass;
+    toggleBtn.textContent = "🙈 Hide";
+    isPassVisible = true;
+  }
+}
+
+function toggleQRCode() {
+  const qrBox = document.getElementById("qrContainer");
+  if (isQrVisible) {
+    qrBox.style.display = "none";
+    isQrVisible = false;
+  } else {
+    qrBox.style.display = "block";
+    isQrVisible = true;
+  }
+}
+
 function copyPass() {
-  navigator.clipboard.writeText("malikx777").then(function() {
-    const btn = document.querySelector(".copy");
+  navigator.clipboard.writeText(activeUser.wifiPass).then(function() {
+    const btn = document.getElementById("copyBtn");
     btn.textContent = "COPIED ✓";
-    setTimeout(() => { btn.textContent = "COPY"; }, 1500);
+    btn.style.background = "#2ed573";
+    btn.style.color = "#ffffff";
+    
+    setTimeout(() => { 
+      btn.textContent = "COPY"; 
+      btn.style.background = "#20c9ed";
+      btn.style.color = "#07111f";
+    }, 1500);
   });
 }
 
-// Logout
 function logout() {
   document.getElementById("username").value = "";
   document.getElementById("password").value = "";
   document.getElementById("error").textContent = "";
+  activeUser = null;
   showScreen("screen-welcome");
 }
 </script>
 
 </body>
-</html>
+  </html>
