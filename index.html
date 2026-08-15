@@ -1,3 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WIFI PACKAGE</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  font-family:Arial,sans-serif;
+  color:white;
+  background:linear-gradient(135deg,#07111f,#123653);
+}
+
+.card{
+  width:100%;
+  max-width:390px;
+  padding:28px;
+  text-align:center;
+  border-radius:24px;
+  background:rgba(13,27,44,.97);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 20px 60px rgba(0,0,0,.45);
+}
+
+.icon{
+  font-size:55px;
+  margin-bottom:8px;
+}
+
+h1{
+  margin:0 0 7px;
+  font-size:28px;
+}
+
+.sub{
+  color:#9eacbf;
+  margin:0 0 22px;
+}
+
+input{
+  width:100%;
+  padding:15px;
+  margin:7px 0;
+  border:1px solid #33445b;
+  border-radius:12px;
+  background:#091625;
+  color:white;
+  font-size:16px;
+  outline:none;
+}
+
+input:focus{
+  border-color:#32d7ff;
+}
+
+button{
+  width:100%;
+  padding:15px;
+  margin-top:12px;
+  border:0;
+  border-radius:12px;
+  background:#20c9ed;
+  color:#03121a;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:active{
+  transform:scale(.98);
+}
+
+#error{
+  min-height:22px;
+  margin-top:12px;
+  color:#ff687b;
+}
+
+#dashboard{
+  display:none;
+}
+
+.info{
+  text-align:left;
+  background:#091625;
+  border-radius:15px;
+  padding:17px;
+  margin-top:12px;
+}
+
+.label{
+  font-size:12px;
+  color:#8fa0b5;
+  text-transform:uppercase;
+}
+
+.value{
+  margin-top:6px;
+  font-size:20px;
+  font-weight:bold;
+  word-break:break-all;
+}
+
+.pass{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.copy{
+  width:auto;
+  margin:0;
+  padding:9px 12px;
+  font-size:13px;
+  background:#263b54;
+  color:white;
+}
+
+.logout{
+  background:#202e41;
+  color:white;
+  margin-top:18px;
+}
 </style>
-<
-  
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<div class="card" id="login">
+
+  <div class="icon">📶</div>
+
+  <h1>WIFI PACKAGE</h1>
+
+  <p class="sub">
+    Login to view your WiFi details
+  </p>
+
+  <input
+    id="username"
+    type="text"
+    placeholder="Username"
+    autocomplete="username"
+  >
+
+  <input
+    id="password"
+    type="password"
+    placeholder="Login Password"
+    autocomplete="current-password"
+  >
+
+  <button onclick="login()">
+    LOGIN
+  </button>
+
+  <div id="error"></div>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<div class="card" id="dashboard">
+
+  <div class="icon">✅</div>
+
+  <h1>WIFI PACKAGE</h1>
+
+  <p class="sub">
+    Your WiFi details
+  </p>
+
+  <div class="info">
+
+    <div class="label">
+      WiFi Name (SSID)
+    </div>
+
+    <div class="value">
+      Anas Malik
+    </div>
+
+  </div>
+
+
+  <div class="info">
+
+    <div class="label">
+      WiFi Password
+    </div>
+
+    <div class="pass">
+
+      <div class="value" id="wifiPass">
+        malikx777
+      </div>
+
+      <button class="copy" onclick="copyPass()">
+        COPY
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <button class="logout" onclick="logout()">
+    LOGOUT
+  </button>
+
+</div>
+
+
+<script>
+
+const USERNAME = "anasx777";
+const LOGIN_PASSWORD = "aass1122";
+
+
+function login(){
+
+  const username =
+    document.getElementById("username").value.trim();
+
+  const password =
+    document.getElementById("password").value;
+
+  const error =
+    document.getElementById("error");
+
+
+  if(
+    username === USERNAME &&
+    password === LOGIN_PASSWORD
+  ){
+
+    document.getElementById("login").style.display =
+      "none";
+
+    document.getElementById("dashboard").style.display =
+      "block";
+
+    error.textContent = "";
+
+  }else{
+
+    error.textContent =
+      "❌ Incorrect username or password";
+
+  }
+
+}
+
+
+function copyPass(){
+
+  navigator.clipboard.writeText("malikx777")
+  .then(function(){
+
+    const button =
+      document.querySelector(".copy");
+
+    button.textContent = "COPIED ✓";
+
+    setTimeout(function(){
+
+      button.textContent = "COPY";
+
+    },1500);
+
+  });
+
+}
+
+
+function logout(){
+
+  document.getElementById("dashboard").style.display =
+    "none";
+
+  document.getElementById("login").style.display =
+    "block";
+
+  document.getElementById("username").value = "";
+
+  document.getElementById("password").value = "";
+
+}
+
+</script>
+
+</body>
+</html>
