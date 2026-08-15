@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WIFI PACKAGE</title>
+<title>WIFI PACKAGE & PAYMENT</title>
 
 <style>
 * { box-sizing: border-box; }
@@ -43,7 +43,7 @@ body {
   z-index: 0;
 }
 
-/* Card Base */
+/* Base Card Style */
 .card {
   width: 100%;
   max-width: 380px;
@@ -143,21 +143,106 @@ button:active {
   text-decoration: underline;
 }
 
-.illustration {
-  width: 100%;
-  height: 180px;
-  margin: 15px 0 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* ==========================================
+   JAZZCASH PAYMENT CARD STYLES
+   ========================================== */
+.card-payment {
+  background: rgba(26, 12, 12, 0.95);
+  border: 1px solid rgba(235, 30, 42, 0.3);
+  color: #ffffff;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(235, 30, 42, 0.2);
 }
 
-.signup-art {
-  width: 100%;
-  height: 90px;
+.jc-header {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.jc-logo-badge {
+  background: #eb1e2a;
+  color: #fff;
+  font-weight: 900;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  box-shadow: 0 0 15px rgba(235, 30, 42, 0.5);
+}
+
+.amount-box {
+  background: rgba(235, 30, 42, 0.08);
+  border: 1px dashed rgba(235, 30, 42, 0.4);
+  border-radius: 16px;
+  padding: 12px;
+  margin-bottom: 15px;
+}
+
+.amount-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffb703;
+}
+
+.account-info {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 14px;
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.info-row:last-child { margin-bottom: 0; }
+.info-label { font-size: 12px; color: #aaa; }
+.info-val { font-size: 14px; font-weight: 700; color: #fff; }
+
+.qr-section {
+  background: #fff;
+  padding: 10px;
+  border-radius: 14px;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.qr-section img {
+  width: 120px;
+  height: 120px;
+  display: block;
+}
+
+.jc-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  text-align: center;
+}
+
+.btn-pay {
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(90deg, #eb1e2a, #ff8800);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(235, 30, 42, 0.3);
 }
 
 /* ==========================================
@@ -171,9 +256,7 @@ button:active {
   backdrop-filter: blur(10px);
 }
 
-.dash-header {
-  margin-bottom: 20px;
-}
+.dash-header { margin-bottom: 20px; }
 
 .wifi-glow-icon {
   width: 60px;
@@ -186,13 +269,11 @@ button:active {
   margin: 0 auto 10px;
   font-size: 30px;
   border: 1px solid rgba(32, 201, 237, 0.3);
-  box-shadow: 0 0 20px rgba(32, 201, 237, 0.2);
 }
 
 .dash-title {
   font-size: 22px;
   font-weight: 800;
-  letter-spacing: 1px;
   margin: 0;
   background: linear-gradient(90deg, #ffffff, #80d8ff);
   -webkit-background-clip: text;
@@ -210,18 +291,8 @@ button:active {
   font-size: 11px;
   font-weight: 600;
   margin-top: 6px;
-  border: 1px solid rgba(46, 213, 115, 0.3);
 }
 
-.status-dot {
-  width: 7px;
-  height: 7px;
-  background-color: #2ed573;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #2ed573;
-}
-
-/* Info Cards */
 .info-card {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -229,44 +300,13 @@ button:active {
   padding: 14px 16px;
   margin-top: 12px;
   text-align: left;
-  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-.info-card:hover {
-  border-color: rgba(32, 201, 237, 0.4);
-}
+.info-top { display: flex; justify-content: space-between; align-items: center; }
+.info-label-d { font-size: 11px; color: #8fa0b5; font-weight: 700; text-transform: uppercase; }
+.info-value-box { display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
+.info-value { font-size: 16px; font-weight: 700; color: #ffffff; }
 
-.info-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.info-label {
-  font-size: 11px;
-  color: #8fa0b5;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 700;
-}
-
-.info-value-box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 6px;
-  gap: 10px;
-}
-
-.info-value {
-  font-size: 17px;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: 0.5px;
-  word-break: break-all;
-}
-
-/* Progress Bar Styles */
 .progress-container {
   width: 100%;
   height: 8px;
@@ -284,74 +324,32 @@ button:active {
   transition: width 0.6s ease;
 }
 
-.progress-text {
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-  color: #8fa0b5;
-  margin-top: 6px;
-}
+.progress-text { display: flex; justify-content: space-between; font-size: 11px; color: #8fa0b5; margin-top: 6px; }
 
-/* QR Code Section */
-.qr-container {
-  display: none;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 15px;
-  border-radius: 16px;
-  margin-top: 12px;
-  text-align: center;
-}
-
-.qr-container img {
-  width: 140px;
-  height: 140px;
-  border-radius: 8px;
-}
-
-.qr-text {
+.btn-copy-main {
+  background: #20c9ed;
   color: #07111f;
-  font-size: 12px;
-  font-weight: 600;
-  margin-top: 6px;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 11px;
+  cursor: pointer;
 }
 
 .btn-icon {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: #ffffff;
-  padding: 5px 10px;
+  padding: 4px 8px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 12px;
-}
-
-.btn-copy-main {
-  background: #20c9ed;
-  color: #07111f;
-  border: none;
-  padding: 7px 12px;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.btn-qr-toggle {
-  width: 100%;
-  padding: 11px;
-  margin-top: 12px;
-  border: 1px solid rgba(32, 201, 237, 0.4);
-  border-radius: 14px;
-  background: rgba(32, 201, 237, 0.1);
-  color: #20c9ed;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
+  font-size: 11px;
 }
 
 .logout-modern {
   width: 100%;
-  padding: 13px;
+  padding: 12px;
   border: 1px solid rgba(255, 75, 75, 0.3);
   border-radius: 14px;
   background: rgba(255, 75, 75, 0.1);
@@ -362,12 +360,13 @@ button:active {
   cursor: pointer;
 }
 
-#error {
+#error, #payMsg {
   min-height: 20px;
   margin-top: 10px;
-  color: #ff687b;
-  font-size: 13px;
+  font-size: 12px;
 }
+.error-text { color: #ff687b; }
+.success-text { color: #2ed573; }
 </style>
 </head>
 
@@ -380,17 +379,6 @@ button:active {
 <div class="card card-light" id="screen-welcome">
   <div class="light-title">Wellcome</div>
   <div class="light-sub">Here you log in securely</div>
-
-  <div class="illustration">
-    <svg viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="50" r="15" fill="#cbe8ff"/>
-      <rect x="30" y="80" width="140" height="40" rx="10" fill="#e2eeff"/>
-      <path d="M70 100 C70 80, 90 80, 90 100" stroke="#000" stroke-width="3" fill="none"/>
-      <circle cx="80" cy="70" r="8" fill="#000"/>
-      <polygon points="170,40 180,55 160,55" stroke="#000" stroke-width="1.5" fill="none"/>
-      <circle cx="165" cy="85" r="5" stroke="#000" stroke-width="1.5" fill="none"/>
-    </svg>
-  </div>
 
   <button class="btn-outline" onclick="showScreen('screen-login')">Log in</button>
   <button class="btn-filled" onclick="showScreen('screen-signup')">Sign Up</button>
@@ -417,51 +405,77 @@ button:active {
 
 <!-- 3. SIGNUP SCREEN -->
 <div class="card card-light" id="screen-signup" style="display: none;">
-  <div class="signup-art">
-    <svg viewBox="0 0 100 60" width="80" height="50">
-      <path d="M50 5 Q60 25 50 50 M50 15 Q70 10 75 25 M50 25 Q70 25 70 40 M50 15 Q30 10 25 25 M50 25 Q30 25 30 40" stroke="#000" stroke-width="2" fill="none"/>
-    </svg>
-  </div>
-
   <div class="light-title">Sign up</div>
   <div class="light-sub">Create an account, It's free</div>
 
   <input type="email" placeholder="Email" class="light-input">
   <input type="password" placeholder="Password" class="light-input">
-  <input type="password" placeholder="Confirm Password" class="light-input">
 
   <button class="btn-action" onclick="showScreen('screen-login')">Sign Up</button>
-
-  <div class="link-text">
-    Already have an account? <span class="link-btn" onclick="showScreen('screen-login')">Log In</span>
-  </div>
 </div>
 
 
-<!-- 4. MODERN DASHBOARD SCREEN WITH PROGRESS & QR -->
+<!-- 4. JAZZCASH PAYMENT SCREEN (Login ke foran baad ayega) -->
+<div class="card card-payment" id="screen-payment" style="display: none;">
+  
+  <div class="jc-header">
+    <div class="jc-logo-badge">JazzCash</div>
+    <div style="font-size: 18px; font-weight: 700;">Payment Gateway</div>
+  </div>
+
+  <div class="amount-box">
+    <div style="font-size: 11px; color: #aaa;">Package Price</div>
+    <div class="amount-value">Rs. 500.00</div>
+  </div>
+
+  <div class="account-info">
+    <div class="info-row">
+      <span class="info-label">Account Name:</span>
+      <span class="info-val">Anas Malik</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">JazzCash Number:</span>
+      <span class="info-val">03157778106</span>
+    </div>
+  </div>
+
+  <div class="qr-section">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=JazzCash:03157778106" alt="JazzCash QR">
+  </div>
+
+  <div style="text-align: left; margin-bottom: 5px;">
+    <span style="font-size: 11px; color: #ccc;">Enter 12-Digit TID (Transaction ID)</span>
+  </div>
+  <input type="text" id="trxInput" class="jc-input" placeholder="e.g. 012345678912" maxlength="12">
+
+  <button class="btn-pay" onclick="approvePayment()">APPROVE & UNLOCK PACKAGE</button>
+
+  <div id="payMsg"></div>
+</div>
+
+
+<!-- 5. WIFI PACKAGE DASHBOARD SCREEN (TID Approve hone ke baad open hoga) -->
 <div class="card card-dark" id="screen-dashboard" style="display: none;">
   
   <div class="dash-header">
     <div class="wifi-glow-icon">📶</div>
-    <h2 class="dash-title">WIFI DETAILS</h2>
-    <div class="status-badge">
-      <span class="status-dot"></span> Active Connection
-    </div>
+    <h2 class="dash-title">PACKAGE DASHBOARD</h2>
+    <div class="status-badge">● Active Connection</div>
   </div>
 
   <!-- SSID Card -->
   <div class="info-card">
-    <div class="info-label">Network Name (SSID)</div>
+    <div class="info-label-d">Network Name (SSID)</div>
     <div class="info-value-box">
       <span class="info-value" id="displayWifiName">---</span>
-      <span style="font-size: 11px; color: #8fa0b5;">5G Dual-Band</span>
+      <span style="font-size: 11px; color: #8fa0b5;">5G High Speed</span>
     </div>
   </div>
 
   <!-- Password Card -->
   <div class="info-card">
     <div class="info-top">
-      <span class="info-label">WiFi Password</span>
+      <span class="info-label-d">WiFi Password</span>
       <button class="btn-icon" id="togglePassBtn" onclick="togglePassword()">👁️ Show</button>
     </div>
     <div class="info-value-box">
@@ -473,8 +487,8 @@ button:active {
   <!-- Data Usage Progress Card -->
   <div class="info-card">
     <div class="info-top">
-      <span class="info-label">Data Package Usage</span>
-      <span id="dataStatusText" style="font-size: 11px; color: #20c9ed; font-weight: bold;">0% Used</span>
+      <span class="info-label-d">Data Usage</span>
+      <span id="dataStatusText" style="font-size: 11px; color: #20c9ed; font-weight: bold;">0%</span>
     </div>
     <div class="progress-container">
       <div class="progress-bar" id="dataProgressBar"></div>
@@ -485,61 +499,46 @@ button:active {
     </div>
   </div>
 
-  <!-- Quick Connect QR Button & Area -->
-  <button class="btn-qr-toggle" onclick="toggleQRCode()">📱 Show Connect QR Code</button>
-  
-  <div class="qr-container" id="qrContainer">
-    <img id="qrImage" src="" alt="WiFi QR Code">
-    <div class="qr-text">Scan with Phone Camera to Connect</div>
-  </div>
-
   <button class="logout-modern" onclick="logout()">LOG OUT</button>
 
 </div>
 
 
 <script>
-// USERS LIST WITH DATA LIMITS
+// USERS LIST
 const USERS = [
   {
     username: "anasx777",
     password: "aass1122",
-    wifiName: "Anas Malik",
+    wifiName: "Anas Malik 5G",
     wifiPass: "malikx777",
-    dataUsed: 68,  // GB
-    dataTotal: 100 // GB
+    dataUsed: 68,
+    dataTotal: 100
   },
   {
     username: "ali123",
     password: "pass1234",
     wifiName: "Ali WiFi",
     wifiPass: "aliwifi999",
-    dataUsed: 25,
+    dataUsed: 20,
     dataTotal: 50
-  },
-  {
-    username: "dost1",
-    password: "78678600",
-    wifiName: "Friend WiFi",
-    wifiPass: "dostpass123",
-    dataUsed: 92,
-    dataTotal: 100
   }
 ];
 
 let activeUser = null;
 let isPassVisible = false;
-let isQrVisible = false;
 
 function showScreen(screenId) {
   document.getElementById("screen-welcome").style.display = "none";
   document.getElementById("screen-login").style.display = "none";
   document.getElementById("screen-signup").style.display = "none";
+  document.getElementById("screen-payment").style.display = "none";
   document.getElementById("screen-dashboard").style.display = "none";
 
   document.getElementById(screenId).style.display = "block";
 }
 
+// 1. LOGIN FUNCTION -> Payment Screen Par Le Kar Jayega
 function login() {
   const userInput = document.getElementById("username").value.trim();
   const passInput = document.getElementById("password").value;
@@ -551,31 +550,44 @@ function login() {
     error.textContent = "";
     activeUser = foundUser;
     
-    // Set WiFi SSID & Password Reset
-    document.getElementById("displayWifiName").textContent = activeUser.wifiName;
-    isPassVisible = false;
-    document.getElementById("wifiPass").textContent = "••••••••";
-    document.getElementById("togglePassBtn").textContent = "👁️ Show";
-
-    // Set Data Usage Progress
-    const percent = Math.round((activeUser.dataUsed / activeUser.dataTotal) * 100);
-    document.getElementById("dataProgressBar").style.width = percent + "%";
-    document.getElementById("dataStatusText").textContent = percent + "% Used";
-    document.getElementById("usedText").textContent = activeUser.dataUsed + " GB used";
-    document.getElementById("totalText").textContent = activeUser.dataTotal + " GB total";
-
-    // Prepare QR Code URL
-    const wifiQrString = `WIFI:T:WPA;S:${activeUser.wifiName};P:${activeUser.wifiPass};;`;
-    const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(wifiQrString)}`;
-    document.getElementById("qrImage").src = qrApiUrl;
-
-    // Reset QR Visibility
-    document.getElementById("qrContainer").style.display = "none";
-    isQrVisible = false;
-
-    showScreen("screen-dashboard");
+    // Step 2: Login Success -> Open Payment Page First
+    showScreen("screen-payment");
   } else {
+    error.className = "error-text";
     error.textContent = "❌ Incorrect username or password";
+  }
+}
+
+// 2. PAYMENT APPROVAL -> Dashboard Open Karega
+function approvePayment() {
+  const trx = document.getElementById("trxInput").value.trim();
+  const payMsg = document.getElementById("payMsg");
+
+  // Basic 12-Digit TID Validation
+  if (trx.length === 12 && !isNaN(trx)) {
+    payMsg.className = "success-text";
+    payMsg.textContent = "✅ Payment Approved! Unlocking Package...";
+    
+    setTimeout(() => {
+      // Setup Dashboard Data
+      document.getElementById("displayWifiName").textContent = activeUser.wifiName;
+      isPassVisible = false;
+      document.getElementById("wifiPass").textContent = "••••••••";
+      document.getElementById("togglePassBtn").textContent = "👁️ Show";
+
+      const percent = Math.round((activeUser.dataUsed / activeUser.dataTotal) * 100);
+      document.getElementById("dataProgressBar").style.width = percent + "%";
+      document.getElementById("dataStatusText").textContent = percent + "% Used";
+      document.getElementById("usedText").textContent = activeUser.dataUsed + " GB used";
+      document.getElementById("totalText").textContent = activeUser.dataTotal + " GB total";
+
+      // Step 3: Open Dashboard
+      showScreen("screen-dashboard");
+    }, 1200);
+
+  } else {
+    payMsg.className = "error-text";
+    payMsg.textContent = "❌ Invalid TID! Enter valid 12-digit JazzCash TRX ID.";
   }
 }
 
@@ -591,17 +603,6 @@ function togglePassword() {
     passElement.textContent = activeUser.wifiPass;
     toggleBtn.textContent = "🙈 Hide";
     isPassVisible = true;
-  }
-}
-
-function toggleQRCode() {
-  const qrBox = document.getElementById("qrContainer");
-  if (isQrVisible) {
-    qrBox.style.display = "none";
-    isQrVisible = false;
-  } else {
-    qrBox.style.display = "block";
-    isQrVisible = true;
   }
 }
 
@@ -623,7 +624,9 @@ function copyPass() {
 function logout() {
   document.getElementById("username").value = "";
   document.getElementById("password").value = "";
+  document.getElementById("trxInput").value = "";
   document.getElementById("error").textContent = "";
+  document.getElementById("payMsg").textContent = "";
   activeUser = null;
   showScreen("screen-welcome");
 }
