@@ -246,6 +246,61 @@ button:active {
 }
 
 /* ==========================================
+   ALREADY PAID SCREEN STYLES (For Azan)
+   ========================================== */
+.card-already-paid {
+  background: #0f172a;
+  border: 1px solid #2ed573;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.paid-title {
+  color: #2ed573;
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.paid-text {
+  font-size: 14px;
+  color: #dcdde1;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.proof-img-box {
+  width: 100%;
+  max-height: 250px;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 15px;
+  background: #000;
+}
+
+.proof-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.btn-next {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 14px;
+  background: #2ed573;
+  color: #07111f;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+/* ==========================================
    MODERN DASHBOARD STYLES
    ========================================== */
 .card-dark {
@@ -415,9 +470,8 @@ button:active {
 </div>
 
 
-<!-- 4. JAZZCASH PAYMENT SCREEN (Login ke foran baad ayega) -->
+<!-- 4. JAZZCASH PAYMENT SCREEN -->
 <div class="card card-payment" id="screen-payment" style="display: none;">
-  
   <div class="jc-header">
     <div class="jc-logo-badge">JazzCash</div>
     <div style="font-size: 18px; font-weight: 700;">Payment Gateway</div>
@@ -454,9 +508,26 @@ button:active {
 </div>
 
 
-<!-- 5. WIFI PACKAGE DASHBOARD SCREEN (TID Approve hone ke baad open hoga) -->
+<!-- 5. ALREADY PAID SCREEN (Special Screen For azan001) -->
+<div class="card card-already-paid" id="screen-already-paid" style="display: none;">
+  <div class="paid-title">✅ Payment Done</div>
+  <div class="paid-text">
+    Your payment already done.<br>
+    Thnx for Compromise.
+  </div>
+
+  <!-- Receipt Screenshot Image -->
+  <div class="proof-img-box">
+    <img src="IMG-20260815-WA0019.jpg" alt="Payment Receipt">
+  </div>
+
+  <!-- Next Button -->
+  <button class="btn-next" onclick="openDashboardDirectly()">NEXT ➔</button>
+</div>
+
+
+<!-- 6. WIFI PACKAGE DASHBOARD SCREEN -->
 <div class="card card-dark" id="screen-dashboard" style="display: none;">
-  
   <div class="dash-header">
     <div class="wifi-glow-icon">📶</div>
     <h2 class="dash-title">PACKAGE DASHBOARD</h2>
@@ -500,7 +571,6 @@ button:active {
   </div>
 
   <button class="logout-modern" onclick="logout()">LOG OUT</button>
-
 </div>
 
 
@@ -508,22 +578,32 @@ button:active {
 // USERS LIST
 const USERS = [
   {
+    username: "azan001",
+    password: "001 azan",
+    wifiName: "Anas Malik",
+    wifiPass: "malik555x",
+    dataUsed: 15,
+    dataTotal: 100,
+    alreadyPaid: true
+  },
+  {
     username: "anasx777",
     password: "aass1122",
     wifiName: "Anas Malik 5G",
     wifiPass: "malikx777",
     dataUsed: 68,
-    dataTotal: 100
+    dataTotal: 100,
+    alreadyPaid: false
   },
   {
-    username: "azan001",
-    password: "001azan",
-    wifiName: "Anas Malik WiFi",
-    nextnewwifiPass: "Malik555x",
+    username: "ali123",
+    password: "pass1234",
+    wifiName: "Ali WiFi",
+    wifiPass: "aliwifi999",
     dataUsed: 20,
-    dataTotal: 50
-    {
-      
+    dataTotal: 50,
+    alreadyPaid: false
+  }
 ];
 
 let activeUser = null;
@@ -534,12 +614,13 @@ function showScreen(screenId) {
   document.getElementById("screen-login").style.display = "none";
   document.getElementById("screen-signup").style.display = "none";
   document.getElementById("screen-payment").style.display = "none";
+  document.getElementById("screen-already-paid").style.display = "none";
   document.getElementById("screen-dashboard").style.display = "none";
 
   document.getElementById(screenId).style.display = "block";
 }
 
-// 1. LOGIN FUNCTION -> Payment Screen Par Le Kar Jayega
+// LOGIN FUNCTION
 function login() {
   const userInput = document.getElementById("username").value.trim();
   const passInput = document.getElementById("password").value;
@@ -551,38 +632,35 @@ function login() {
     error.textContent = "";
     activeUser = foundUser;
     
-    // Step 2: Login Success -> Open Payment Page First
-    showScreen("screen-payment");
+    // Check if user has already paid (like azan001)
+    if (activeUser.alreadyPaid) {
+      showScreen("screen-already-paid");
+    } else {
+      showScreen("screen-payment");
+    }
   } else {
     error.className = "error-text";
     error.textContent = "❌ Incorrect username or password";
   }
 }
 
-// 2. PAYMENT APPROVAL -> Dashboard Open Karega
+// DIRECT DASHBOARD FOR ALREADY PAID USERS (When Next Button Clicked)
+function openDashboardDirectly() {
+  loadDashboardData();
+  showScreen("screen-dashboard");
+}
+
+// PAYMENT APPROVAL FUNCTION
 function approvePayment() {
   const trx = document.getElementById("trxInput").value.trim();
   const payMsg = document.getElementById("payMsg");
 
-  // Basic 12-Digit TID Validation
   if (trx.length === 12 && !isNaN(trx)) {
     payMsg.className = "success-text";
     payMsg.textContent = "✅ Payment Approved! Unlocking Package...";
     
     setTimeout(() => {
-      // Setup Dashboard Data
-      document.getElementById("displayWifiName").textContent = activeUser.wifiName;
-      isPassVisible = false;
-      document.getElementById("wifiPass").textContent = "••••••••";
-      document.getElementById("togglePassBtn").textContent = "👁️ Show";
-
-      const percent = Math.round((activeUser.dataUsed / activeUser.dataTotal) * 100);
-      document.getElementById("dataProgressBar").style.width = percent + "%";
-      document.getElementById("dataStatusText").textContent = percent + "% Used";
-      document.getElementById("usedText").textContent = activeUser.dataUsed + " GB used";
-      document.getElementById("totalText").textContent = activeUser.dataTotal + " GB total";
-
-      // Step 3: Open Dashboard
+      loadDashboardData();
       showScreen("screen-dashboard");
     }, 1200);
 
@@ -590,6 +668,19 @@ function approvePayment() {
     payMsg.className = "error-text";
     payMsg.textContent = "❌ Invalid TID! Enter valid 12-digit JazzCash TRX ID.";
   }
+}
+
+function loadDashboardData() {
+  document.getElementById("displayWifiName").textContent = activeUser.wifiName;
+  isPassVisible = false;
+  document.getElementById("wifiPass").textContent = "••••••••";
+  document.getElementById("togglePassBtn").textContent = "👁️ Show";
+
+  const percent = Math.round((activeUser.dataUsed / activeUser.dataTotal) * 100);
+  document.getElementById("dataProgressBar").style.width = percent + "%";
+  document.getElementById("dataStatusText").textContent = percent + "% Used";
+  document.getElementById("usedText").textContent = activeUser.dataUsed + " GB used";
+  document.getElementById("totalText").textContent = activeUser.dataTotal + " GB total";
 }
 
 function togglePassword() {
