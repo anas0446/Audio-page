@@ -3,726 +3,391 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WIFI PACKAGE & PAYMENT</title>
+<title>FD999</title>
 
 <style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #0d1b2c;
-  background: #aadbff;
-  position: relative;
-  overflow-x: hidden;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
 }
 
-/* Background Watermarks */
-.bg-text {
-  position: fixed;
-  top: 2%;
-  left: 2%;
-  font-size: 70px;
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.6);
-  pointer-events: none;
-  z-index: 0;
-}
-.bg-face {
-  position: fixed;
-  bottom: 2%;
-  right: 2%;
-  font-size: 80px;
-  color: rgba(255, 255, 255, 0.6);
-  pointer-events: none;
-  z-index: 0;
+body{
+    background:#111;
+    color:white;
 }
 
-/* Base Card Style */
-.card {
-  width: 100%;
-  max-width: 380px;
-  padding: 30px 25px;
-  border-radius: 30px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-  position: relative;
-  z-index: 1;
+.header{
+    height:72px;
+    background:#151515;
+    display:flex;
+    align-items:center;
+    padding:0 18px;
+    border-bottom:1px solid #333;
 }
 
-/* Light Card Style */
-.card-light {
-  background: #ffffff;
-  text-align: center;
+.logo{
+    font-size:32px;
+    font-weight:900;
+    color:#ef2939;
+    text-shadow:2px 2px #8d1620;
 }
 
-.light-title {
-  margin: 0 0 8px;
-  font-size: 26px;
-  font-weight: 700;
-  color: #000;
+.search{
+    margin-left:auto;
+    font-size:30px;
 }
 
-.light-sub {
-  color: #8fa0b5;
-  margin: 0 0 20px;
-  font-size: 14px;
+.banner{
+    margin:18px;
+    height:185px;
+    border-radius:15px;
+    overflow:hidden;
+    background:
+      linear-gradient(110deg,#f8c400,#ff9c00,#f2a400);
+    position:relative;
 }
 
-.light-input {
-  width: 100%;
-  padding: 12px 5px;
-  margin: 10px 0;
-  border: none;
-  border-bottom: 1.5px solid #e1e8f0;
-  background: transparent;
-  color: #0d1b2c;
-  font-size: 14px;
-  outline: none;
-}
-.light-input:focus {
-  border-color: #0d1b2c;
+.banner h1{
+    position:absolute;
+    left:25px;
+    top:30px;
+    font-size:27px;
+    color:white;
 }
 
-.btn-outline {
-  width: 100%;
-  padding: 14px;
-  margin-top: 15px;
-  border: 1.5px solid #000;
-  border-radius: 25px;
-  background: transparent;
-  color: #000;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
+.banner p{
+    position:absolute;
+    left:25px;
+    top:70px;
+    font-size:15px;
 }
 
-.btn-filled {
-  width: 100%;
-  padding: 14px;
-  margin-top: 12px;
-  border: 1.5px solid #000;
-  border-radius: 25px;
-  background: #cbe8ff;
-  color: #000;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
+.banner strong{
+    position:absolute;
+    left:25px;
+    top:105px;
+    font-size:25px;
+    color:#ff2424;
+    text-shadow:1px 1px white;
 }
 
-.btn-action {
-  width: 100%;
-  padding: 14px;
-  margin-top: 25px;
-  border: 1.5px solid #000;
-  border-radius: 25px;
-  background: #e5e9f0;
-  color: #000;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
+.menu{
+    display:flex;
+    justify-content:space-around;
+    padding:12px 5px;
+    background:#151515;
 }
 
-button:active {
-  transform: scale(0.98);
+.menu div{
+    text-align:center;
+    color:#aaa;
+    font-size:13px;
 }
 
-.link-text {
-  margin-top: 20px;
-  font-size: 13px;
-  color: #8fa0b5;
-}
-.link-btn {
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-  text-decoration: underline;
+.menu span{
+    display:block;
+    font-size:27px;
+    margin-bottom:5px;
 }
 
-/* ==========================================
-   JAZZCASH PAYMENT CARD STYLES
-   ========================================== */
-.card-payment {
-  background: rgba(26, 12, 12, 0.95);
-  border: 1px solid rgba(235, 30, 42, 0.3);
-  color: #ffffff;
-  text-align: center;
-  box-shadow: 0 20px 50px rgba(235, 30, 42, 0.2);
+.categories{
+    display:flex;
+    justify-content:space-around;
+    padding:18px 5px;
+    border-bottom:1px solid #444;
+    color:#ddd;
+    font-size:15px;
 }
 
-.jc-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
+.games{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    padding:20px 18px 100px;
 }
 
-.jc-logo-badge {
-  background: #eb1e2a;
-  color: #fff;
-  font-weight: 900;
-  padding: 6px 12px;
-  border-radius: 12px;
-  font-size: 18px;
-  letter-spacing: 1px;
-  box-shadow: 0 0 15px rgba(235, 30, 42, 0.5);
+.game{
+    height:245px;
+    border-radius:20px;
+    overflow:hidden;
+    cursor:pointer;
+    position:relative;
+    transition:.15s;
+    border:1px solid #333;
 }
 
-.amount-box {
-  background: rgba(235, 30, 42, 0.08);
-  border: 1px dashed rgba(235, 30, 42, 0.4);
-  border-radius: 16px;
-  padding: 12px;
-  margin-bottom: 15px;
+.game:active{
+    transform:scale(.96);
 }
 
-.amount-value {
-  font-size: 24px;
-  font-weight: 800;
-  color: #ffb703;
+.game .pic{
+    height:190px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-weight:900;
+    font-size:25px;
+    padding:10px;
 }
 
-.account-info {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  padding: 14px;
-  text-align: left;
-  margin-bottom: 15px;
+.game .name{
+    height:55px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#171717;
+    font-size:14px;
+    font-weight:bold;
 }
 
-.info-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
+/* Game designs */
+.aviator{
+    background:linear-gradient(145deg,#161616,#383838);
+}
+.aviator .pic{
+    color:#e91c32;
+    font-size:32px;
 }
 
-.info-row:last-child { margin-bottom: 0; }
-.info-label { font-size: 12px; color: #aaa; }
-.info-val { font-size: 14px; font-weight: 700; color: #fff; }
-
-.qr-section {
-  background: #fff;
-  padding: 10px;
-  border-radius: 14px;
-  display: inline-block;
-  margin-bottom: 15px;
+.piggy{
+    background:linear-gradient(145deg,#ffbd00,#ef7410);
+}
+.piggy .pic{
+    color:white;
+    text-shadow:2px 2px #b93c00;
 }
 
-.qr-section img {
-  width: 120px;
-  height: 120px;
-  display: block;
+.crazy{
+    background:linear-gradient(145deg,#6510ed,#8d00ff);
+}
+.crazy .pic{
+    color:#ffe600;
+    font-size:38px;
 }
 
-.jc-input {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  font-size: 14px;
-  outline: none;
-  text-align: center;
+.fortune{
+    background:linear-gradient(145deg,#073a8d,#ca8200);
+}
+.fortune .pic{
+    color:#ffd700;
 }
 
-.btn-pay {
-  width: 100%;
-  padding: 14px;
-  margin-top: 12px;
-  border: none;
-  border-radius: 14px;
-  background: linear-gradient(90deg, #eb1e2a, #ff8800);
-  color: #fff;
-  font-size: 15px;
-  font-weight: 800;
-  cursor: pointer;
-  box-shadow: 0 10px 20px rgba(235, 30, 42, 0.3);
+.money{
+    background:linear-gradient(145deg,#158b35,#50b936);
+}
+.money .pic{
+    color:#fff;
+    font-size:30px;
 }
 
-/* ==========================================
-   ALREADY PAID SCREEN STYLES (For Azan)
-   ========================================== */
-.card-already-paid {
-  background: #0f172a;
-  border: 1px solid #2ed573;
-  color: white;
-  text-align: center;
-  padding: 20px;
+.cricket{
+    background:linear-gradient(145deg,#6d160d,#d28a2d);
+}
+.cricket .pic{
+    color:white;
 }
 
-.paid-title {
-  color: #2ed573;
-  font-size: 18px;
-  font-weight: 800;
-  margin-bottom: 8px;
+/* Bottom navigation */
+.bottom{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:76px;
+    background:#202020;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    border-top:1px solid #444;
+    z-index:10;
 }
 
-.paid-text {
-  font-size: 14px;
-  color: #dcdde1;
-  margin-bottom: 15px;
-  line-height: 1.4;
+.bottom div{
+    text-align:center;
+    color:#777;
+    font-size:13px;
 }
 
-.proof-img-box {
-  width: 100%;
-  max-height: 250px;
-  overflow: hidden;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 15px;
-  background: #000;
+.bottom .active{
+    color:#ef2525;
 }
 
-.proof-img-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.bottom span{
+    display:block;
+    font-size:27px;
+    margin-bottom:3px;
 }
 
-.btn-next {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 14px;
-  background: #2ed573;
-  color: #07111f;
-  font-size: 16px;
-  font-weight: 800;
-  cursor: pointer;
-  letter-spacing: 1px;
+/* Coming Soon popup */
+.popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
 }
 
-/* ==========================================
-   MODERN DASHBOARD STYLES
-   ========================================== */
-.card-dark {
-  background: linear-gradient(145deg, #0f1c2e, #1a2c42);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: white;
-  text-align: center;
-  backdrop-filter: blur(10px);
+.popup-box{
+    width:310px;
+    background:#222;
+    border-radius:16px;
+    padding:28px 20px;
+    text-align:center;
+    border:1px solid #555;
+    box-shadow:0 10px 40px #000;
 }
 
-.dash-header { margin-bottom: 20px; }
-
-.wifi-glow-icon {
-  width: 60px;
-  height: 60px;
-  background: rgba(32, 201, 237, 0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 10px;
-  font-size: 30px;
-  border: 1px solid rgba(32, 201, 237, 0.3);
+.popup-box h2{
+    color:#ff3333;
+    margin-bottom:10px;
+    font-size:27px;
 }
 
-.dash-title {
-  font-size: 22px;
-  font-weight: 800;
-  margin: 0;
-  background: linear-gradient(90deg, #ffffff, #80d8ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.popup-box p{
+    color:#bbb;
+    margin-bottom:20px;
 }
 
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(46, 213, 115, 0.15);
-  color: #2ed573;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 600;
-  margin-top: 6px;
+.popup-box button{
+    background:#e52b2b;
+    color:white;
+    border:0;
+    padding:11px 30px;
+    border-radius:9px;
+    font-size:15px;
+    cursor:pointer;
 }
-
-.info-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  padding: 14px 16px;
-  margin-top: 12px;
-  text-align: left;
-}
-
-.info-top { display: flex; justify-content: space-between; align-items: center; }
-.info-label-d { font-size: 11px; color: #8fa0b5; font-weight: 700; text-transform: uppercase; }
-.info-value-box { display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
-.info-value { font-size: 16px; font-weight: 700; color: #ffffff; }
-
-.progress-container {
-  width: 100%;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  margin-top: 10px;
-  overflow: hidden;
-}
-
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #20c9ed, #2ed573);
-  border-radius: 10px;
-  transition: width 0.6s ease;
-}
-
-.progress-text { display: flex; justify-content: space-between; font-size: 11px; color: #8fa0b5; margin-top: 6px; }
-
-.btn-copy-main {
-  background: #20c9ed;
-  color: #07111f;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 11px;
-  cursor: pointer;
-}
-
-.btn-icon {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  padding: 4px 8px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 11px;
-}
-
-.logout-modern {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid rgba(255, 75, 75, 0.3);
-  border-radius: 14px;
-  background: rgba(255, 75, 75, 0.1);
-  color: #ff6b6b;
-  font-size: 14px;
-  font-weight: 700;
-  margin-top: 16px;
-  cursor: pointer;
-}
-
-#error, #payMsg {
-  min-height: 20px;
-  margin-top: 10px;
-  font-size: 12px;
-}
-.error-text { color: #ff687b; }
-.success-text { color: #2ed573; }
 </style>
 </head>
 
 <body>
 
-<div class="bg-text">BOOM!</div>
-<div class="bg-face">✕‿✕</div>
-
-<!-- 1. WELCOME SCREEN -->
-<div class="card card-light" id="screen-welcome">
-  <div class="light-title">Wellcome</div>
-  <div class="light-sub">Here you log in securely</div>
-
-  <button class="btn-outline" onclick="showScreen('screen-login')">Log in</button>
-  <button class="btn-filled" onclick="showScreen('screen-signup')">Sign Up</button>
+<div class="header">
+    <div class="logo">FD999</div>
+    <div class="search">⌕</div>
 </div>
 
-
-<!-- 2. LOGIN SCREEN -->
-<div class="card card-light" id="screen-login" style="display: none;">
-  <div class="light-title">Log in</div>
-  <div class="light-sub">Enter your WiFi Package details</div>
-
-  <input id="username" type="text" placeholder="Username" class="light-input" autocomplete="username">
-  <input id="password" type="password" placeholder="Password" class="light-input" autocomplete="current-password">
-
-  <div id="error"></div>
-
-  <button class="btn-action" onclick="login()">Log In</button>
-
-  <div class="link-text">
-    Don't have an account? <span class="link-btn" onclick="showScreen('screen-signup')">Sign Up</span>
-  </div>
+<div class="banner">
+    <h1>Super VIP4 ↑</h1>
+    <p>Deposit and get a super bonus.<br>
+    Please contact customer service to claim it.</p>
+    <strong>Up to 25% of the deposit</strong>
 </div>
 
-
-<!-- 3. SIGNUP SCREEN -->
-<div class="card card-light" id="screen-signup" style="display: none;">
-  <div class="light-title">Sign up</div>
-  <div class="light-sub">Create an account, It's free</div>
-
-  <input type="email" placeholder="Email" class="light-input">
-  <input type="password" placeholder="Password" class="light-input">
-
-  <button class="btn-action" onclick="showScreen('screen-login')">Sign Up</button>
+<div class="menu">
+    <div><span>🎁</span>Daily Share</div>
+    <div><span>💳</span>Deposit</div>
+    <div><span>🎧</span>Support</div>
+    <div><span>▦</span>More</div>
 </div>
 
-
-<!-- 4. JAZZCASH PAYMENT SCREEN -->
-<div class="card card-payment" id="screen-payment" style="display: none;">
-  <div class="jc-header">
-    <div class="jc-logo-badge">JazzCash</div>
-    <div style="font-size: 18px; font-weight: 700;">Payment Gateway</div>
-  </div>
-
-  <div class="amount-box">
-    <div style="font-size: 11px; color: #aaa;">Package Price</div>
-    <div class="amount-value">Rs. 500.00</div>
-  </div>
-
-  <div class="account-info">
-    <div class="info-row">
-      <span class="info-label">Account Name:</span>
-      <span class="info-val">Anas Malik</span>
-    </div>
-    <div class="info-row">
-      <span class="info-label">JazzCash Number:</span>
-      <span class="info-val">03157778106</span>
-    </div>
-  </div>
-
-  <div class="qr-section">
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=JazzCash:03157778106" alt="JazzCash QR">
-  </div>
-
-  <div style="text-align: left; margin-bottom: 5px;">
-    <span style="font-size: 11px; color: #ccc;">Enter 12-Digit TID (Transaction ID)</span>
-  </div>
-  <input type="text" id="trxInput" class="jc-input" placeholder="e.g. 012345678912" maxlength="12">
-
-  <button class="btn-pay" onclick="approvePayment()">APPROVE & UNLOCK PACKAGE</button>
-
-  <div id="payMsg"></div>
+<div class="categories">
+    <div>🔥 Hot</div>
+    <div>🎲 Mini Games</div>
+    <div>🎰 Slot</div>
+    <div>🃏 Cards</div>
 </div>
 
+<div class="games">
 
-<!-- 5. ALREADY PAID SCREEN (Special Screen For azan001) -->
-<div class="card card-already-paid" id="screen-already-paid" style="display: none;">
-  <div class="paid-title">✅ Payment Done</div>
-  <div class="paid-text">
-    Your payment already done.<br>
-    Thnx for Compromise.
-  </div>
+    <div class="game aviator" onclick="comingSoon()">
+        <div class="pic">SPRIBE<br>✈<br>AVIATOR</div>
+        <div class="name">Aviator</div>
+    </div>
 
-  <!-- Receipt Screenshot Image -->
-  <div class="proof-img-box">
-    <img src="IMG-20260815-WA0019.jpg" alt="Payment Receipt">
-  </div>
+    <div class="game piggy" onclick="comingSoon()">
+        <div class="pic">JDB<br>13000X<br>🐷<br>PIGGY BANK</div>
+        <div class="name">Piggy Bank</div>
+    </div>
 
-  <!-- Next Button -->
-  <button class="btn-next" onclick="openDashboardDirectly()">NEXT ➔</button>
+    <div class="game crazy" onclick="comingSoon()">
+        <div class="pic">WG<br>10000X<br>777</div>
+        <div class="name">Crazy777</div>
+    </div>
+
+    <div class="game fortune" onclick="comingSoon()">
+        <div class="pic">JILI<br>💰<br>FORTUNE GEMS 3</div>
+        <div class="name">Fortune Gems 3</div>
+    </div>
+
+    <div class="game money" onclick="comingSoon()">
+        <div class="pic">JILI<br>💵<br>MONEY COMING</div>
+        <div class="name">Money Coming</div>
+    </div>
+
+    <div class="game cricket" onclick="comingSoon()">
+        <div class="pic">🏏<br>CRICKET<br>SPORTS</div>
+        <div class="name">Cricket Sports</div>
+    </div>
+
+    <div class="game fortune" onclick="comingSoon()">
+        <div class="pic">JILI<br>FORTUNE</div>
+        <div class="name">Lucky Game</div>
+    </div>
+
+    <div class="game crazy" onclick="comingSoon()">
+        <div class="pic">PG<br>777</div>
+        <div class="name">777 Game</div>
+    </div>
+
+    <div class="game piggy" onclick="comingSoon()">
+        <div class="pic">JILI<br>GOLD</div>
+        <div class="name">Golden Game</div>
+    </div>
+
 </div>
 
+<div class="bottom">
+    <div class="active">
+        <span>⌂</span>Home
+    </div>
 
-<!-- 6. WIFI PACKAGE DASHBOARD SCREEN -->
-<div class="card card-dark" id="screen-dashboard" style="display: none;">
-  <div class="dash-header">
-    <div class="wifi-glow-icon">📶</div>
-    <h2 class="dash-title">PACKAGE DASHBOARD</h2>
-    <div class="status-badge">● Active Connection</div>
-  </div>
+    <div>
+        <span>🎁</span>Promo
+    </div>
 
-  <!-- SSID Card -->
-  <div class="info-card">
-    <div class="info-label-d">Network Name (SSID)</div>
-    <div class="info-value-box">
-      <span class="info-value" id="displayWifiName">---</span>
-      <span style="font-size: 11px; color: #8fa0b5;">5G High Speed</span>
+    <div>
+        <span>♧</span>Invite
     </div>
-  </div>
 
-  <!-- Password Card -->
-  <div class="info-card">
-    <div class="info-top">
-      <span class="info-label-d">WiFi Password</span>
-      <button class="btn-icon" id="togglePassBtn" onclick="togglePassword()">👁️ Show</button>
+    <div>
+        <span>▣</span>Deposit
     </div>
-    <div class="info-value-box">
-      <span class="info-value" id="wifiPass">••••••••</span>
-      <button class="btn-copy-main" id="copyBtn" onclick="copyPass()">COPY</button>
-    </div>
-  </div>
 
-  <!-- Data Usage Progress Card -->
-  <div class="info-card">
-    <div class="info-top">
-      <span class="info-label-d">Data Usage</span>
-      <span id="dataStatusText" style="font-size: 11px; color: #20c9ed; font-weight: bold;">0%</span>
+    <div>
+        <span>♙</span>Profile
     </div>
-    <div class="progress-container">
-      <div class="progress-bar" id="dataProgressBar"></div>
-    </div>
-    <div class="progress-text">
-      <span id="usedText">0 GB</span>
-      <span id="totalText">100 GB</span>
-    </div>
-  </div>
-
-  <button class="logout-modern" onclick="logout()">LOG OUT</button>
 </div>
 
+<!-- Popup -->
+<div class="popup" id="popup">
+    <div class="popup-box">
+        <h2>Coming Soon</h2>
+        <p>This game is currently unavailable.</p>
+        <button onclick="closePopup()">OK</button>
+    </div>
+</div>
 
 <script>
-// USERS LIST
-const USERS = [
-  {
-    username: "azan001",
-    password: "001 azan",
-    wifiName: "Anas Malik",
-    wifiPass: "malik555x",
-    dataUsed: 15,
-    dataTotal: 100,
-    alreadyPaid: true
-  },
-  {
-    username: "anasx777",
-    password: "aass1122",
-    wifiName: "Anas Malik 5G",
-    wifiPass: "malikx777",
-    dataUsed: 68,
-    dataTotal: 100,
-    alreadyPaid: false
-  },
-  {
-    username: "ali123",
-    password: "pass1234",
-    wifiName: "Ali WiFi",
-    wifiPass: "aliwifi999",
-    dataUsed: 20,
-    dataTotal: 50,
-    alreadyPaid: false
-  }
-];
-
-let activeUser = null;
-let isPassVisible = false;
-
-function showScreen(screenId) {
-  document.getElementById("screen-welcome").style.display = "none";
-  document.getElementById("screen-login").style.display = "none";
-  document.getElementById("screen-signup").style.display = "none";
-  document.getElementById("screen-payment").style.display = "none";
-  document.getElementById("screen-already-paid").style.display = "none";
-  document.getElementById("screen-dashboard").style.display = "none";
-
-  document.getElementById(screenId).style.display = "block";
+function comingSoon(){
+    document.getElementById("popup").style.display="flex";
 }
 
-// LOGIN FUNCTION
-function login() {
-  const userInput = document.getElementById("username").value.trim();
-  const passInput = document.getElementById("password").value;
-  const error = document.getElementById("error");
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+}
 
-  const foundUser = USERS.find(u => u.username === userInput && u.password === passInput);
-
-  if (foundUser) {
-    error.textContent = "";
-    activeUser = foundUser;
-    
-    // Check if user has already paid (like azan001)
-    if (activeUser.alreadyPaid) {
-      showScreen("screen-already-paid");
-    } else {
-      showScreen("screen-payment");
+document.getElementById("popup").addEventListener("click",function(e){
+    if(e.target === this){
+        closePopup();
     }
-  } else {
-    error.className = "error-text";
-    error.textContent = "❌ Incorrect username or password";
-  }
-}
-
-// DIRECT DASHBOARD FOR ALREADY PAID USERS (When Next Button Clicked)
-function openDashboardDirectly() {
-  loadDashboardData();
-  showScreen("screen-dashboard");
-}
-
-// PAYMENT APPROVAL FUNCTION
-function approvePayment() {
-  const trx = document.getElementById("trxInput").value.trim();
-  const payMsg = document.getElementById("payMsg");
-
-  if (trx.length === 12 && !isNaN(trx)) {
-    payMsg.className = "success-text";
-    payMsg.textContent = "✅ Payment Approved! Unlocking Package...";
-    
-    setTimeout(() => {
-      loadDashboardData();
-      showScreen("screen-dashboard");
-    }, 1200);
-
-  } else {
-    payMsg.className = "error-text";
-    payMsg.textContent = "❌ Invalid TID! Enter valid 12-digit JazzCash TRX ID.";
-  }
-}
-
-function loadDashboardData() {
-  document.getElementById("displayWifiName").textContent = activeUser.wifiName;
-  isPassVisible = false;
-  document.getElementById("wifiPass").textContent = "••••••••";
-  document.getElementById("togglePassBtn").textContent = "👁️ Show";
-
-  const percent = Math.round((activeUser.dataUsed / activeUser.dataTotal) * 100);
-  document.getElementById("dataProgressBar").style.width = percent + "%";
-  document.getElementById("dataStatusText").textContent = percent + "% Used";
-  document.getElementById("usedText").textContent = activeUser.dataUsed + " GB used";
-  document.getElementById("totalText").textContent = activeUser.dataTotal + " GB total";
-}
-
-function togglePassword() {
-  const passElement = document.getElementById("wifiPass");
-  const toggleBtn = document.getElementById("togglePassBtn");
-
-  if (isPassVisible) {
-    passElement.textContent = "••••••••";
-    toggleBtn.textContent = "👁️ Show";
-    isPassVisible = false;
-  } else {
-    passElement.textContent = activeUser.wifiPass;
-    toggleBtn.textContent = "🙈 Hide";
-    isPassVisible = true;
-  }
-}
-
-function copyPass() {
-  navigator.clipboard.writeText(activeUser.wifiPass).then(function() {
-    const btn = document.getElementById("copyBtn");
-    btn.textContent = "COPIED ✓";
-    btn.style.background = "#2ed573";
-    btn.style.color = "#ffffff";
-    
-    setTimeout(() => { 
-      btn.textContent = "COPY"; 
-      btn.style.background = "#20c9ed";
-      btn.style.color = "#07111f";
-    }, 1500);
-  });
-}
-
-function logout() {
-  document.getElementById("username").value = "";
-  document.getElementById("password").value = "";
-  document.getElementById("trxInput").value = "";
-  document.getElementById("error").textContent = "";
-  document.getElementById("payMsg").textContent = "";
-  activeUser = null;
-  showScreen("screen-welcome");
-}
+});
 </script>
 
 </body>
-  </html>
+          </html>
