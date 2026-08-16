@@ -2,226 +2,139 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>FD999</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+    background:#101010;
+    color:#fff;
     font-family:Arial,sans-serif;
 }
-
-body{
-    background:#111;
-    color:white;
-}
-
 .header{
-    height:72px;
-    background:#151515;
+    height:70px;
     display:flex;
     align-items:center;
     padding:0 18px;
-    border-bottom:1px solid #333;
+    background:#171717;
 }
-
 .logo{
-    font-size:32px;
+    font-size:34px;
     font-weight:900;
-    color:#ef2939;
-    text-shadow:2px 2px #8d1620;
+    color:#f02b3c;
 }
-
 .search{
     margin-left:auto;
-    font-size:30px;
+    font-size:31px;
 }
-
 .banner{
-    margin:18px;
-    height:185px;
-    border-radius:15px;
-    overflow:hidden;
-    background:
-      linear-gradient(110deg,#f8c400,#ff9c00,#f2a400);
-    position:relative;
+    margin:0 18px 25px;
+    height:250px;
+    border-radius:0 0 28px 28px;
+    background:linear-gradient(135deg,#ffc900,#ff9c00);
+    padding:25px 48px;
 }
-
 .banner h1{
-    position:absolute;
-    left:25px;
-    top:30px;
-    font-size:27px;
-    color:white;
+    font-size:35px;
+    margin-bottom:12px;
 }
-
 .banner p{
-    position:absolute;
-    left:25px;
-    top:70px;
-    font-size:15px;
+    font-size:20px;
+    line-height:1.4;
 }
-
 .banner strong{
-    position:absolute;
-    left:25px;
-    top:105px;
-    font-size:25px;
-    color:#ff2424;
-    text-shadow:1px 1px white;
+    display:block;
+    margin-top:8px;
+    font-size:30px;
+    color:#ed3030;
+    text-shadow:2px 2px white;
 }
-
-.menu{
-    display:flex;
-    justify-content:space-around;
-    padding:12px 5px;
+.quick{
+    height:155px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    align-items:center;
+    text-align:center;
     background:#151515;
 }
-
-.menu div{
-    text-align:center;
-    color:#aaa;
-    font-size:13px;
-}
-
-.menu span{
+.quick .ico{
+    font-size:38px;
     display:block;
-    font-size:27px;
-    margin-bottom:5px;
+    margin-bottom:8px;
 }
-
-.categories{
+.quick div{
+    color:#aaa;
+    font-size:18px;
+}
+.cats{
+    height:105px;
     display:flex;
+    align-items:center;
     justify-content:space-around;
-    padding:18px 5px;
-    border-bottom:1px solid #444;
-    color:#ddd;
-    font-size:15px;
+    border-bottom:2px solid #444;
+    font-size:21px;
+    white-space:nowrap;
 }
-
 .games{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:20px;
-    padding:20px 18px 100px;
+    gap:36px;
+    padding:38px 34px 110px;
 }
-
 .game{
-    height:245px;
-    border-radius:20px;
+    height:460px;
+    border-radius:35px;
     overflow:hidden;
+    border:2px solid #333;
+    background:#181818;
     cursor:pointer;
-    position:relative;
     transition:.15s;
-    border:1px solid #333;
 }
-
-.game:active{
-    transform:scale(.96);
+.game:active{transform:scale(.96)}
+.art{
+    height:355px;
+    overflow:hidden;
 }
-
-.game .pic{
-    height:190px;
+.art svg{
+    width:100%;
+    height:100%;
+    display:block;
+}
+.game-name{
+    height:105px;
     display:flex;
     align-items:center;
     justify-content:center;
-    text-align:center;
-    font-weight:900;
-    font-size:25px;
-    padding:10px;
-}
-
-.game .name{
-    height:55px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#171717;
-    font-size:14px;
+    font-size:22px;
     font-weight:bold;
+    background:#181818;
 }
-
-/* Game designs */
-.aviator{
-    background:linear-gradient(145deg,#161616,#383838);
-}
-.aviator .pic{
-    color:#e91c32;
-    font-size:32px;
-}
-
-.piggy{
-    background:linear-gradient(145deg,#ffbd00,#ef7410);
-}
-.piggy .pic{
-    color:white;
-    text-shadow:2px 2px #b93c00;
-}
-
-.crazy{
-    background:linear-gradient(145deg,#6510ed,#8d00ff);
-}
-.crazy .pic{
-    color:#ffe600;
-    font-size:38px;
-}
-
-.fortune{
-    background:linear-gradient(145deg,#073a8d,#ca8200);
-}
-.fortune .pic{
-    color:#ffd700;
-}
-
-.money{
-    background:linear-gradient(145deg,#158b35,#50b936);
-}
-.money .pic{
-    color:#fff;
-    font-size:30px;
-}
-
-.cricket{
-    background:linear-gradient(145deg,#6d160d,#d28a2d);
-}
-.cricket .pic{
-    color:white;
-}
-
-/* Bottom navigation */
 .bottom{
     position:fixed;
-    bottom:0;
     left:0;
     right:0;
-    height:76px;
-    background:#202020;
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
+    bottom:0;
+    height:90px;
+    background:#222;
     border-top:1px solid #444;
-    z-index:10;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    z-index:20;
 }
-
 .bottom div{
     text-align:center;
+    padding-top:10px;
     color:#777;
-    font-size:13px;
+    font-size:17px;
 }
-
-.bottom .active{
-    color:#ef2525;
-}
-
 .bottom span{
     display:block;
-    font-size:27px;
+    font-size:34px;
     margin-bottom:3px;
 }
+.bottom .active{color:#ef2939}
 
-/* Coming Soon popup */
 .popup{
     position:fixed;
     inset:0;
@@ -231,36 +144,56 @@ body{
     justify-content:center;
     z-index:100;
 }
-
 .popup-box{
-    width:310px;
+    width:300px;
     background:#222;
-    border-radius:16px;
+    border:1px solid #555;
+    border-radius:18px;
     padding:28px 20px;
     text-align:center;
-    border:1px solid #555;
-    box-shadow:0 10px 40px #000;
 }
-
 .popup-box h2{
-    color:#ff3333;
+    color:#ff3030;
+    font-size:28px;
     margin-bottom:10px;
-    font-size:27px;
 }
-
 .popup-box p{
-    color:#bbb;
+    color:#aaa;
     margin-bottom:20px;
 }
-
 .popup-box button{
-    background:#e52b2b;
-    color:white;
     border:0;
+    background:#e52b2b;
+    color:#fff;
     padding:11px 30px;
     border-radius:9px;
-    font-size:15px;
-    cursor:pointer;
+    font-size:16px;
+}
+
+@media(max-width:500px){
+    .banner{
+        height:300px;
+        padding:25px 30px;
+    }
+    .banner h1{font-size:29px}
+    .banner p{font-size:18px}
+    .banner strong{font-size:26px}
+    .games{
+        gap:16px;
+        padding:25px 18px 100px;
+    }
+    .game{
+        height:300px;
+        border-radius:24px;
+    }
+    .art{height:230px}
+    .game-name{
+        height:70px;
+        font-size:16px;
+    }
+    .cats{
+        font-size:15px;
+    }
 }
 </style>
 </head>
@@ -279,14 +212,14 @@ body{
     <strong>Up to 25% of the deposit</strong>
 </div>
 
-<div class="menu">
-    <div><span>🎁</span>Daily Share</div>
-    <div><span>💳</span>Deposit</div>
-    <div><span>🎧</span>Support</div>
-    <div><span>▦</span>More</div>
+<div class="quick">
+    <div><span class="ico">🎁</span>Daily Share</div>
+    <div><span class="ico">💳</span>Deposit</div>
+    <div><span class="ico">🎧</span>Support</div>
+    <div><span class="ico">▦</span>More</div>
 </div>
 
-<div class="categories">
+<div class="cats">
     <div>🔥 Hot</div>
     <div>🎲 Mini Games</div>
     <div>🎰 Slot</div>
@@ -295,82 +228,162 @@ body{
 
 <div class="games">
 
-    <div class="game aviator" onclick="comingSoon()">
-        <div class="pic">SPRIBE<br>✈<br>AVIATOR</div>
-        <div class="name">Aviator</div>
-    </div>
+<!-- AVIATOR -->
+<div class="game" onclick="comingSoon()">
+<div class="art">
+<svg viewBox="0 0 300 400">
+<defs>
+<linearGradient id="av" x2="0" y2="1">
+<stop stop-color="#181818"/>
+<stop offset="1" stop-color="#333"/>
+</linearGradient>
+</defs>
+<rect width="300" height="400" fill="url(#av)"/>
+<text x="150" y="90" text-anchor="middle"
+font-size="45" font-weight="900" fill="#ed2438">SPRIBE</text>
+<text x="150" y="215" text-anchor="middle"
+font-size="80">✈</text>
+<text x="150" y="310" text-anchor="middle"
+font-size="45" font-weight="900" fill="#ed2438">AVIATOR</text>
+</svg>
+</div>
+<div class="game-name">Aviator</div>
+</div>
 
-    <div class="game piggy" onclick="comingSoon()">
-        <div class="pic">JDB<br>13000X<br>🐷<br>PIGGY BANK</div>
-        <div class="name">Piggy Bank</div>
-    </div>
+<!-- PIGGY BANK -->
+<div class="game" onclick="comingSoon()">
+<div class="art">
+<svg viewBox="0 0 300 400">
+<defs>
+<linearGradient id="pig" x2="0" y2="1">
+<stop stop-color="#ffc000"/>
+<stop offset="1" stop-color="#ff8500"/>
+</linearGradient>
+</defs>
+<rect width="300" height="400" fill="url(#pig)"/>
+<text x="150" y="70" text-anchor="middle"
+font-size="45" font-weight="900" fill="white">JDB</text>
+<text x="150" y="125" text-anchor="middle"
+font-size="42" font-weight="900" fill="white">13000X</text>
+<text x="150" y="220" text-anchor="middle"
+font-size="75">🐷</text>
+<text x="150" y="290" text-anchor="middle"
+font-size="39" font-weight="900" fill="white">PIGGY</text>
+<text x="150" y="340" text-anchor="middle"
+font-size="39" font-weight="900" fill="white">BANK</text>
+</svg>
+</div>
+<div class="game-name">Piggy Bank</div>
+</div>
 
-    <div class="game crazy" onclick="comingSoon()">
-        <div class="pic">WG<br>10000X<br>777</div>
-        <div class="name">Crazy777</div>
-    </div>
+<!-- CRAZY777 -->
+<div class="game" onclick="comingSoon()">
+<div class="art">
+<svg viewBox="0 0 300 400">
+<defs>
+<linearGradient id="crazy" x2="1" y2="1">
+<stop stop-color="#5510e8"/>
+<stop offset="1" stop-color="#9000ff"/>
+</linearGradient>
+</defs>
+<rect width="300" height="400" fill="url(#crazy)"/>
+<text x="150" y="75" text-anchor="middle"
+font-size="45" font-weight="900" fill="#ffe900">WG</text>
+<text x="150" y="150" text-anchor="middle"
+font-size="42" font-weight="900" fill="#ffe900">10000X</text>
+<text x="150" y="280" text-anchor="middle"
+font-size="75" font-weight="900" fill="#ffe900">777</text>
+</svg>
+</div>
+<div class="game-name">Crazy777</div>
+</div>
 
-    <div class="game fortune" onclick="comingSoon()">
-        <div class="pic">JILI<br>💰<br>FORTUNE GEMS 3</div>
-        <div class="name">Fortune Gems 3</div>
-    </div>
+<!-- FORTUNE GEMS -->
+<div class="game" onclick="comingSoon()">
+<div class="art">
+<svg viewBox="0 0 300 400">
+<defs>
+<linearGradient id="fg" x2="0" y2="1">
+<stop stop-color="#1555a5"/>
+<stop offset="1" stop-color="#242b40"/>
+</linearGradient>
+</defs>
+<rect width="300" height="400" fill="url(#fg)"/>
+<text x="150" y="90" text-anchor="middle"
+font-size="48" font-weight="900" fill="#fff">JILI</text>
+<text x="150" y="190" text-anchor="middle"
+font-size="80">💰</text>
+<text x="150" y="275" text-anchor="middle"
+font-size="35" font-weight="900" fill="#ffe000">FORTUNE</text>
+<text x="150" y="325" text-anchor="middle"
+font-size="35" font-weight="900" fill="#ffe000">GEMS 3</text>
+</svg>
+</div>
+<div class="game-name">Fortune Gems 3</div>
+</div>
 
-    <div class="game money" onclick="comingSoon()">
-        <div class="pic">JILI<br>💵<br>MONEY COMING</div>
-        <div class="name">Money Coming</div>
-    </div>
+<!-- MONEY COMING -->
+<div class="game" onclick="comingSoon()">
+<div class="art">
+<svg viewBox="0 0 300 400">
+<defs>
+<linearGradient id="money" x2="0" y2="1">
+<stop stop-color="#20b34b"/>
+<stop offset="1" stop-color="#12862d"/>
+</linearGradient>
+</defs>
+<rect width="300" height="400" fill="url(#money)"/>
+<text x="150" y="85" text-anchor="middle"
+font-size="48" font-weight="900" fill="white">JILI</text>
+<text x="150" y="195" text-anchor="middle"
+font-size="82">💵</text>
+<text x="150" y="290" text-anchor="middle"
+font-size="35" font-weight="900" fill="white">MONEY</text>
+<text x="150" y="335" text-anchor="middle"
+font-size="35" font-weight="900" fill="white">COMING</text>
+</svg>
+</div>
+<div class="game-name">Money Coming</div>
+</div>
 
-    <div class="game cricket" onclick="comingSoon()">
-        <div class="pic">🏏<br>CRICKET<br>SPORTS</div>
-        <div class="name">Cricket Sports</div>
-    </div>
-
-    <div class="game fortune" onclick="comingSoon()">
-        <div class="pic">JILI<br>FORTUNE</div>
-        <div class="name">Lucky Game</div>
-    </div>
-
-    <div class="game crazy" onclick="comingSoon()">
-        <div class="pic">PG<br>777</div>
-        <div class="name">777 Game</div>
-    </div>
-
-    <div class="game piggy" onclick="comingSoon()">
-        <div class="pic">JILI<br>GOLD</div>
-        <div class="name">Golden Game</div>
-    </div>
+<!-- CRICKET -->
+<div class="game" onclick="comingSoon()">
+<div class="art">
+<svg viewBox="0 0 300 400">
+<defs>
+<linearGradient id="cricket" x2="0" y2="1">
+<stop stop-color="#9b2e10"/>
+<stop offset="1" stop-color="#5d170c"/>
+</linearGradient>
+</defs>
+<rect width="300" height="400" fill="url(#cricket)"/>
+<text x="150" y="100" text-anchor="middle"
+font-size="75">🏏</text>
+<text x="150" y="230" text-anchor="middle"
+font-size="38" font-weight="900" fill="white">CRICKET</text>
+<text x="150" y="285" text-anchor="middle"
+font-size="38" font-weight="900" fill="white">SPORTS</text>
+</svg>
+</div>
+<div class="game-name">Cricket Sports</div>
+</div>
 
 </div>
 
 <div class="bottom">
-    <div class="active">
-        <span>⌂</span>Home
-    </div>
-
-    <div>
-        <span>🎁</span>Promo
-    </div>
-
-    <div>
-        <span>♧</span>Invite
-    </div>
-
-    <div>
-        <span>▣</span>Deposit
-    </div>
-
-    <div>
-        <span>♙</span>Profile
-    </div>
+<div class="active"><span>⌂</span>Home</div>
+<div><span>🎁</span>Promo</div>
+<div><span>♣</span>Invite</div>
+<div><span>▣</span>Deposit</div>
+<div><span>♙</span>Profile</div>
 </div>
 
-<!-- Popup -->
 <div class="popup" id="popup">
-    <div class="popup-box">
-        <h2>Coming Soon</h2>
-        <p>This game is currently unavailable.</p>
-        <button onclick="closePopup()">OK</button>
-    </div>
+<div class="popup-box">
+<h2>Coming Soon</h2>
+<p>This game is currently unavailable.</p>
+<button onclick="closePopup()">OK</button>
+</div>
 </div>
 
 <script>
@@ -382,12 +395,10 @@ function closePopup(){
     document.getElementById("popup").style.display="none";
 }
 
-document.getElementById("popup").addEventListener("click",function(e){
-    if(e.target === this){
-        closePopup();
-    }
-});
+document.getElementById("popup").onclick=function(e){
+    if(e.target===this) closePopup();
+};
 </script>
 
 </body>
-          </html>
+    </html>
